@@ -11,7 +11,18 @@ const workerSchema = new Schema(
       type: String,
       require: true,
     },
-
+    businessName: {
+      type: String,
+      require: true,
+    },
+    category: {
+      type: String,
+      require: true,
+    },
+    deactivated: {
+      type: Boolean,
+      default: false,
+    },
     email: {
       type: String,
       require: true,
