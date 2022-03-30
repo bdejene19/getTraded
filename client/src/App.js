@@ -2,12 +2,15 @@ import logo from "./logo.svg";
 import "./App.css";
 import styled from "styled-components";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Home } from "./pages/Home";
 
 function App() {
   return (
     <GlobalStyles>
       <BrowserRouter>
-        <Routes></Routes>
+        <Routes>
+          <Route path="/" element={<Home></Home>}></Route>
+        </Routes>
       </BrowserRouter>
     </GlobalStyles>
   );
