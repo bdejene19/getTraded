@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Hero } from "../components/HomeHero/Hero";
 // import Nav from "../components/Nav";
 import { Navbar } from "../components/Nav/Navbar";
 
@@ -7,7 +8,7 @@ export const Home = () => {
   return (
     <HomeContainer>
       <Navbar></Navbar>
-      {/* <Nav></Nav> */}
+      <Hero></Hero>
     </HomeContainer>
   );
 };
