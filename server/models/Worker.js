@@ -16,8 +16,8 @@ const workerSchema = new Schema(
       require: true,
     },
     category: {
-      type: String,
-      require: true,
+      type: [Category],
+      default: [],
     },
     deactivated: {
       type: Boolean,

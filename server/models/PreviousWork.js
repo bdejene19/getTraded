@@ -1,6 +1,11 @@
 const { Schema, model } = require("mongoose");
 
 const previousWorkSchema = new Schema({
+  business: {
+    type: Schema.Types.ObjectId,
+    ref: "Business",
+    required: true
+  },
   workType: {
     type: String,
     require: true,
