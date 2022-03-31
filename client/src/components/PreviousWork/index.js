@@ -15,8 +15,12 @@ export default function PreviousWork() {
       <h3>Previous work</h3>
 
       <PreviousWorkWrapper>
-        {imgs.map((item) => (
-          <CarouselImg src={item} style={{ width: "100vw" }}></CarouselImg>
+        {imgs.map((item, index) => (
+          <CarouselImg
+            key={index}
+            src={item}
+            style={{ width: "100vw" }}
+          ></CarouselImg>
         ))}
       </PreviousWorkWrapper>
     </Container>

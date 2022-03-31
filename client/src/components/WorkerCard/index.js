@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export default function WorkerCard(props) {
   return (
@@ -13,7 +14,9 @@ export default function WorkerCard(props) {
       </div>
 
       <div className="viewProfile-btn">
-        <button id="viewProfile">View Profile</button>
+        <Link to={"/profiles"}>
+          <button id="viewProfile">View Profile</button>
+        </Link>
       </div>
     </CardContainer>
   );
