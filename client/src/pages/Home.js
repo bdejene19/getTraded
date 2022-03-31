@@ -1,19 +1,20 @@
 import React from "react";
 import styled from "styled-components";
-import { Hero } from "../components/HomeHero/Hero";
+import { Hero } from "../components/HomeHero/index";
 // import Nav from "../components/Nav";
 import { Navbar } from "../components/Nav/Navbar";
 
 export const Home = () => {
   return (
-    <HomeContainer>
+    <Container>
       <Navbar></Navbar>
       <Hero></Hero>
-    </HomeContainer>
+    </Container>
   );
 };
-const HomeContainer = styled.div`
+
+export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%  min-height: 100vh;
+  width: 100%;
 `;
