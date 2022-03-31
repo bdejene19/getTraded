@@ -45,7 +45,7 @@ const HeroWrapper = styled.section`
   display: flex;
   flex-direction: column;
   row-gap: 5em;
-  padding: 5em 0;
+  padding-top: 5em;
 
   h1,
   h2 {
