@@ -7,7 +7,6 @@ import { Navbar } from "../components/Nav/Navbar";
 export const Home = () => {
   return (
     <Container>
-      <Navbar></Navbar>
       <Hero></Hero>
     </Container>
   );
