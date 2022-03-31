@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 export default function ShortCut(props) {
   return (
-    <Link to={props.tradeDisplay} className="shortcut-btn">
+    <Link to={`/${props.tradeTitle}`} className="shortcut-btn">
       <Shortcut>
         {props.tradeDisplay}
         <h3>{props.tradeTitle}</h3>
