@@ -13,9 +13,9 @@ export default function WorkerCard(props) {
         <button>Recent Work</button>
       </div>
 
-      <div className="viewProfile-btn">
+      <div className="viewBusiness-btn">
         <Link to={"/profiles"}>
-          <button id="viewProfile">View Profile</button>
+          <button id="viewBusiness">View Business</button>
         </Link>
       </div>
     </CardContainer>
@@ -40,7 +40,7 @@ const CardContainer = styled.article`
     }
   }
   .recentWork-btn,
-  .viewProfile-btn {
+  .viewBusiness-btn {
     flex: 1 1 40%;
     display: flex;
     justify-content: center;
@@ -53,7 +53,7 @@ const CardContainer = styled.article`
     font-size: 1.2rem;
     text-decoration: underline;
   }
-  .viewProfile-btn {
+  .viewBusiness-btn {
     width: 100%;
     flex-basis: 15%;
 
@@ -67,7 +67,7 @@ const CardContainer = styled.article`
     cursor: pointer;
   }
 
-  #viewProfile {
+  #viewBusiness {
     color: white;
   }
 `;

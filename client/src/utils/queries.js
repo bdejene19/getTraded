@@ -28,6 +28,7 @@ export const QUERY_ME = gql`
   }
 `;
 
+/** For search results - handles shortcut to view business by category */
 export const QUERY_BUSINESS_BY_CATEGORY = gql`
   query businessByCategory($categoryName: String!) {
     business(category: $categoryName) {
@@ -44,6 +45,7 @@ export const QUERY_BUSINESS_BY_CATEGORY = gql`
   }
 `;
 
+/** View specific Business profile page */
 export const QUERY_BUSINESS_BY_ID = gql`
   query businessById($id: ID!) {
     business(_id: $id) {

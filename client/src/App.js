@@ -9,6 +9,8 @@ import Results from "./pages/Results";
 import { Profile } from "./pages/Profile";
 import TestLogin from "./pages/TestLogin";
 import { Navbar } from "./components/Nav/Navbar";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
 const apolloClient = new ApolloClient({
   uri: "/graphql",
@@ -25,7 +27,9 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />}></Route>
             {/* <Route path="/login" element={<Login />}></Route> */}
-            <Route path="/login" element={<TestLogin />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+
             <Route path="/:tradesType" element={<Results />}></Route>
             <Route path="/profiles/:businessId" element={<Profile />}></Route>
           </Routes>
