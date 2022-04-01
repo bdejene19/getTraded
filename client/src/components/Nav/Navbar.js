@@ -2,6 +2,7 @@ import * as React from "react";
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
@@ -71,8 +72,17 @@ export const Navbar = () => {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
-            MUI
+            getTraded
           </Typography>
+
+          <Button variant="outlined" color="inherit" href="/login">
+            Login
+          </Button>
+
+          <Button variant="text" color="inherit" href="/signup">
+            SIGNUP
+          </Button>
+
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
