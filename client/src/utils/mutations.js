@@ -1,39 +1,126 @@
-import gql from 'graphql-tag';
+import { gql } from '@apollo/client';
 
-export const LOGIN = gql`
-  mutation login($email: String!, $password: String!) {
-    login(email: $email, password: $password) {
-      token
-      user {
-        _id
-      }
+export const QUERY_USER = gql`
+    query user($fullName: String!) {
+        user(fullName: $fullName) {
+            _id
+            createdDate
+            fullName
+            email
+            business {
+                _id
+                createdDate
+                name
+                description
+                owner
+                category {
+                    _id
+                    name
+                }
+                experience {
+                    _id
+                    workType
+                    workDescription
+                    workImages
+                }
+                avgScore
+                reviews {
+                    _id
+                    reviewText
+                    reviewAuthor
+                    reviewScore
+                    createdDate
+                }
+            }
+        }
     }
-  }
 `;
 
-export const ADD_USER = gql`
-  mutation addUser($firstName: String!, $lastName: String!, $email: String!, $password: String!) {
-    addUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password) {
-      token
-      user {
-        _id
-      }
+export const QUERY_BUSINESSS = gql`
+    query getBusinesss {
+        businesss {
+            _id
+            createdDate
+            name
+            description
+            owner
+            category {
+                _id
+                name
+            }
+        }
     }
-  }
 `;
 
-export const ADD_COMMENT = gql`
-  mutation addComment($reviewId: ID!, $commentText: String!) {
-    addComment(reviewId: $reviewId, commentText: $commentText) {
-      _id
-      reviewText
-      reviewAuthor
-      createdAt
-      comments {
-        _id
-        commentText
-        createdAt
-      }
+export const QUERY_CATEGORIES = gql`
+    {
+        categories {
+            _id
+            name
+        }
     }
-  }
+`;
+
+export const QUERY_SINGLE_BUSINESS = gql`
+    query getSingleBusiness($businessId: ID!) {
+        business(businessId: $businessId) {
+            _id
+            createdDate
+            name
+            description
+            owner
+            category {
+                _id
+                name
+            }
+            experience {
+                _id
+                workType
+                workDescription
+                workImages
+            }
+            avgScore
+            reviews {
+                _id
+                reviewText
+                reviewAuthor
+                reviewScore
+                createdDate
+            }
+        }
+    }
+`;
+
+export const QUERY_ME = gql`
+    query me {
+        me {
+            _id
+            fullName
+            email
+            businesss {
+                _id
+                createdDate
+                name
+                description
+                owner
+                category {
+                    _id
+                    name
+                }
+                experience {
+                    _id
+                    workType
+                    workDescription
+                    workImages
+                }
+                avgScore
+                reviews {
+                    _id
+                    reviewText
+                    reviewAuthor
+                    reviewScore
+                }
+            }
+        }
+    }
 `;

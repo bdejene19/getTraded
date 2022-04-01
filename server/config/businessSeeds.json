@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Carpet Muncher",
+        "description": "We tear up your old carpets. Count on us for your next carpet renovation!",
+        "owner": "Brian Kernighan"
+    },
+    {
+        "name": "Best Carpenter",
+        "description": "From cabinets to any custom wood work we are here to serve you!",
+        "owner": "Max Kanat-Alexander"
+    },
+    {
+        "name": "One of a Kind Mechanic",
+        "description": "We strive to be the best in the business. We are always looking for new and exciting ideas to make our customers happy.",
+        "owner": "Kent Beck"
+    },
+    {
+        "name": "Electrified Electricians",
+        "description": "Electrical work is our passion. We are always looking for new and exciting ideas to make our customers happy.",
+        "owner": "Edward V. Berard"
+    }
+]
