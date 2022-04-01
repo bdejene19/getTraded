@@ -28,14 +28,12 @@ const typeDefs = gql`
   }
 
   type Experience {
-    _id: ID
     workType: String
     workDescription: String
     workImages: [String]
   }
 
   type Review {
-    _id: ID
     reviewText: String
     reviewAuthor: String
     reviewScore: Int
@@ -52,7 +50,7 @@ const typeDefs = gql`
     user(fullName: String!): User
     businesses(fullName: String): [Business]
     businessesCategory(name: String): [Business]
-    business(businessId: ID!): Business
+    getBusiness(businessId: ID!): Business
     me: User
   }
 

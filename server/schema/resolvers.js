@@ -33,8 +33,15 @@ const resolvers = {
       return await Business.find(params).populate("category");
     },
     //returns specific business using business id
-    business: async (parent, { businessId }) => {
-      return Business.findOne({ _id: businessId });
+    getBusiness: async (parent, { businessId }, context) => {
+      console.log(businessId);
+      console.log("hello");
+      console.log("my c: ", context);
+      const businessFound = await Business.findOne({ _id: businessId })
+        .populate("category")
+        .catch((err) => err);
+      console.log(businessFound);
+      return businessFound;
     },
     //will get current logged in user info if logged in if not will throw error
     me: async (parent, args, context) => {
