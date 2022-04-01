@@ -1,17 +1,8 @@
 [
-    {
-        "name": "Landscaping" 
-     },
-    {
-       "name": "Electrician" 
-    }, 
-    {
-        "name": "Plumber" 
-     }, 
-     {
-        "name": "Painter" 
-     }, 
-     {
-        "name": "Carpenter" 
-     }
+    { "name": "Landscaping" },
+    { "name": "Carpenter" },
+    { "name": "Plumber" },
+    { "name": "Electrician" },
+    { "name": "Locksmith" },
+    { "name": "Painter" }
 ]
