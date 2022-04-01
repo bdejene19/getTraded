@@ -1,4 +1,4 @@
-const { gql } = require('apollo-server-express');
+const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
     type User {
@@ -21,6 +21,7 @@ const typeDefs = gql`
         avgScore: Int
         reviews: [Review]!
     }
+
 
     type Category {
         _id: ID
@@ -78,6 +79,7 @@ const typeDefs = gql`
         removeReview(businessId: ID!, reviewId: ID!): Business
         removeExperience(businessId: ID!, experienceId: ID!): Business
     }
+
 `;
 
 module.exports = typeDefs;

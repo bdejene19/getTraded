@@ -1,3 +1,4 @@
+
 import { gql } from '@apollo/client';
 
 export const QUERY_USER = gql`
@@ -28,4 +29,39 @@ export const QUERY_ME = gql`
             }
         }
     }
+  `;
+
+/** For search results - handles shortcut to view business by category */
+export const QUERY_BUSINESS_BY_CATEGORY = gql`
+  query searchBusinessCategories($categoryName: String!) {
+    getBusinessesByCategory(category: $categoryName) {
+      _id
+      createdDate
+      name
+      description
+      owner
+      experience
+      category
+      score
+      reviews
+    }
+  }
+`;
+
+/** View specific Business profile page */
+export const QUERY_BUSINESS_BY_ID = gql`
+  query businessById($id: ID!) {
+    business(_id: $id) {
+      _id
+      createdDate
+      name
+      description
+      owner
+      experience
+      category
+      score
+      reviews
+    }
+  }
+
 `;

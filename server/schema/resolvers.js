@@ -1,3 +1,4 @@
+
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Business, Category } = require('../models');
 const { signToken } = require('../utils/auth');
@@ -56,11 +57,13 @@ const resolvers = {
         login: async (parent, { email, password }) => {
             const user = await User.findOne({ email });
 
+
             if (!user) {
                 throw new AuthenticationError(
                     'No user found with this email address'
                 );
             }
+
 
             const correctPw = await user.isCorrectPassword(password);
 
@@ -69,6 +72,7 @@ const resolvers = {
             }
 
             const token = signToken(user);
+
 
             return { token, user };
         },
@@ -93,10 +97,12 @@ const resolvers = {
                     { new: true, runValidators: true }
                 );
 
+
                 await User.findOneAndUpdate(
                     { _id: context.user._id },
                     { $addToSet: { business: business._id } }
                 );
+
 
                 return business;
             }
@@ -158,6 +164,7 @@ const resolvers = {
                     owner: context.user.fullName,
                 });
 
+
                 await User.findOneAndUpdate(
                     { _id: context.user._id },
                     { $pull: { business: business._id } }
@@ -205,6 +212,7 @@ const resolvers = {
             throw new AuthenticationError('You need to be logged in!');
         },
     },
+
 };
 
 module.exports = resolvers;

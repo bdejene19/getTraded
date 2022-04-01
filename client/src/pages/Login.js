@@ -1,71 +1,54 @@
 import React, { useState } from "react";
-import { useMutation } from "@apollo/client";
-import { Link } from "react-router-dom";
-import { LOGIN } from "../utils/mutations";
-import Auth from "../utils/auth";
-
+import styled from "styled-components";
+import { Container } from "./Home";
+import LoginForm from "../components/LoginForm";
 function Login(props) {
-  const [formState, setFormState] = useState({ email: "", password: "" });
-  const [login, { error }] = useMutation(LOGIN);
-
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      const mutationResponse = await login({
-        variables: { email: formState.email, password: formState.password },
-      });
-      const token = mutationResponse.data.login.token;
-      Auth.login(token);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormState({
-      ...formState,
-      [name]: value,
-    });
-  };
-
   return (
-    <div className="container my-1">
-      <Link to="/signup">← Go to Signup</Link>
-
-      <h2>Login</h2>
-      <form onSubmit={handleFormSubmit}>
-        <div className="flex-row space-between my-2">
-          <label htmlFor="email">Email address:</label>
-          <input
-            placeholder="youremail@test.com"
-            name="email"
-            type="email"
-            id="email"
-            onChange={handleChange}
-          />
+    <Container style={{ rowGap: 0, padding: 0 }}>
+      <LoginContainer>
+        <LoginForm></LoginForm>
+        <div className="login-art">
+          <img
+            src="https://cdn2.iconfinder.com/data/icons/handyman-repairman-technician/286/worker-action-12-512.png"
+            alt="login clip art"
+          ></img>
         </div>
-        <div className="flex-row space-between my-2">
-          <label htmlFor="pwd">Password:</label>
-          <input
-            placeholder="******"
-            name="password"
-            type="password"
-            id="pwd"
-            onChange={handleChange}
-          />
-        </div>
-        {error ? (
-          <div>
-            <p className="error-text">The provided credentials are incorrect</p>
-          </div>
-        ) : null}
-        <div className="flex-row flex-end">
-          <button type="submit">Submit</button>
-        </div>
-      </form>
-    </div>
+      </LoginContainer>
+    </Container>
   );
 }
 
+const LoginContainer = styled.article`
+  display: flex;
+  flex-wrap: wrap;
+  align-self: center;
+  margin: 5em 0;
+  border: solid slategrey 1.5px;
+  box-shadow: 0 3px 3px slategrey;
+  width: 80vw;
+  height: 65vh;
+  overflow: hidden;
+  border-radius: 10px;
+  h3 {
+    flex: 1 1 100%;
+    height: fit-content;
+    padding: 0.25em;
+  }
+  form,
+  .login-art {
+    /* padding: 1em; */
+  }
+  .login-art {
+    flex: 1 1 60%;
+    display: flex;
+    background-color: #1976d2;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .signUp-btn {
+    text-decoration: none;
+    color: #1976d2;
+  }
+`;
 export default Login;
