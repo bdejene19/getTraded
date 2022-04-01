@@ -50,8 +50,9 @@ const typeDefs = gql`
 
   type Query {
     categories: [Category]
-    businesss(category: ID, name: String): [Business]
-    business(_id: ID!): Business
+    businesses(category: ID, name: String): [Business]
+    getBusinessesById(_id: ID!): Business
+    getBusinessesByCategory(category: String!): Business
     user: User
     reviews: [Review]
   }

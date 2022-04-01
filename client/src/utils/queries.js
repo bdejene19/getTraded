@@ -30,8 +30,8 @@ export const QUERY_ME = gql`
 
 /** For search results - handles shortcut to view business by category */
 export const QUERY_BUSINESS_BY_CATEGORY = gql`
-  query businessByCategory($categoryName: String!) {
-    business(category: $categoryName) {
+  query searchBusinessCategories($categoryName: String!) {
+    getBusinessesByCategory(category: $categoryName) {
       _id
       createdDate
       name
