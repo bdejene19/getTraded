@@ -1,133 +1,67 @@
 const db = require('./connection');
-const { User, Business, Category, Review, PreviousWork } = require('../models');
+const { User, Business, Category } = require('../models');
+const userSeeds = require('./userSeeds.json');
+const businessSeeds = require('./businessSeeds.json');
 
 db.once('open', async () => {
-    await User.deleteMany({});
-    const users = await User.insertMany([
-        {
-            firstName: 'Joe',
-            lastName: 'Smith',
-            email: 'joesmith@testmail.com',
-            password: 'password12345',
-            phoneNumber: '1234567890',
-            business: null,
-        },
-        {
-            firstName: 'Jim',
-            lastName: 'Smith',
-            email: 'jimsmith@testmail.com',
-            password: 'password12345',
-            phoneNumber: '12345467890',
-            business: null,
-        },
-        {
-            firstName: 'John',
-            lastName: 'Smith',
-            email: 'johnsmith@testmail.com',
-            password: 'password12345',
-            phoneNumber: '12345567890',
-            business: null,
-        },
-    ]);
+    try {
+        await Category.deleteMany({});
 
-    console.log('users seeded');
+        const categories = await Category.insertMany([
+            { name: 'Carpet' },
+            { name: 'Carpenter' },
+            { name: 'Auto Mechanic' },
+            { name: 'Electrician' },
+            { name: 'Landscaper' },
+            { name: 'Locksmith' },
+            { name: 'Painter' },
+            { name: 'Plumber' },
+        ]);
+        console.log('Categories seeded');
 
-    await Category.deleteMany({});
+        // await Business.deleteMany();
 
-    const categories = await Category.insertMany([
-        { name: 'Auto Mechanic' },
-        { name: 'Carpenter' },
-        { name: 'Carpet/Tile insteller' },
-        { name: 'Electricain' },
-        { name: 'Landscaper' },
-        { name: 'Locksmith' },
-        { name: 'Painter' },
-        { name: 'Plumber' },
-    ]);
-    console.log('categories seeded');
+        // const businesses = await Business.insertMany(businessSeeds);
 
-    await Business.deleteMany();
+        // console.log('business seeded');
 
-    const businesses = await Business.insertMany([
-        {
-            owner: users[2]._id,
-            name: 'Carpet Muncher',
-            description:
-                'We tear up your old carpets. Count on us for your next carpet renovation!',
-            categories: categories[0]._id,
-            experience: null,
-            Score: 78,
-            reviews: [],
-        },
-        {
-            owner: users[1]._id,
-            name: 'Best Carpenter',
-            description:
-                'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-            categories: categories[1]._id,
-            experience: null,
-            Score: 78,
-            reviews: [],
-        },
-        {
-            owner: users[2]._id,
-            name: 'one of a kind mechanic',
-            description:
-                'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-            categories: categories[0]._id,
-            experience: null,
-            Score: 78,
-            reviews: [],
-        },
-    ]);
+        await User.deleteMany({});
+        await Business.deleteMany({});
+        await User.create(userSeeds);
 
-    console.log('business seeded');
+        console.log('Users seeded');
 
-    await PreviousWork.deleteMany();
-
-    const workexperiences = await PreviousWork.insertMany([
-        {
-            business: businesses[0]._id,
-            workType: 'Carpet Removal and Installation',
-            workImages: [],
-            workDescription: 'We tore up old carpets. Put down new carpet.',
-            jobCompleted: true,
-        },
-        {
-            business: businesses[1]._id,
-            workType: 'Kitchen shelving and flooring',
-            workImages: [],
-            workDescription:
-                'We replaced old shelving. Put in new polished hardwood flooring.',
-            jobCompleted: true,
-        },
-    ]);
-
-    console.log('previous work seeded');
-
-    await Review.deleteMany();
-
-    const reviews = await Review.insertMany([
-        {
-            business: businesses[0]._id,
-            user: users[0]._id,
-            score: 5,
-            comment: 'This is a great1 business',
-        },
-        {
-            business: businesses[1]._id,
-            user: users[1]._id,
-            score: 5,
-            comment: 'This is a great2 business',
-        },
-        {
-            business: businesses[2]._id,
-            user: users[2]._id,
-            score: 5,
-            comment: 'This is a great3 business',
-        },
-    ]);
-    console.log('reviews seeded');
-
+        //seed businesses but also add created business id to user business's array
+        for (let i = 0; i < businessSeeds.length; i++) {
+            const { _id, owner } = await Business.create(businessSeeds[i]);
+            const user = await User.findOneAndUpdate(
+                { fullName: owner },
+                {
+                    $addToSet: {
+                        business: _id,
+                    },
+                }
+            );
+        }
+        //add category ids to respective businesses in businessSeeds
+        for (let i = 0; i < businessSeeds.length; i++) {
+            const { _id } = await Business.findOne({
+                name: businessSeeds[i].name,
+            });
+            await Business.findOneAndUpdate(
+                { _id: _id },
+                {
+                    $addToSet: {
+                        category: categories[i]._id,
+                    },
+                }
+            );
+        }
+    } catch (err) {
+        console.error(err);
+        process.exit(1);
+    }
+    console.log('Businesss Seeded!');
+    console.log('Seeding all done!');
     process.exit();
 });

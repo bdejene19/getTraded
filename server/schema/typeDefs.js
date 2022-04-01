@@ -1,77 +1,85 @@
 const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
-  type Category {
-    _id: ID
-    name: String
-  }
+    type User {
+        _id: ID
+        createdDate: String
+        fullName: String
+        email: String
+        password: String
+        business: [Business]!
+    }
 
-  type Business {
-    _id: ID
-    createdDate: String
-    name: String
-    description: String
-    owner: User
-    category: Category
-    experience: [PreviousWork]
-    score: Int
-    reviews: [Review]
-  }
+    type Business {
+        _id: ID
+        createdDate: String
+        name: String
+        description: String
+        owner: String
+        category: Category
+        experience: [Experience]!
+        avgScore: Int
+        reviews: [Review]!
+    }
 
-  type User {
-    _id: ID
-    firstName: String
-    lastName: String
-    email: String
-  }
 
-  type Review {
-    _id: ID
-    createdDate: String
-    business: Business
-    user: User
-    rating: Int
-    comment: String
-  }
+    type Category {
+        _id: ID
+        name: String
+    }
 
-  type PreviousWork {
-    _id: ID
-    business: Business
-    workType: String
-    workImages: [String]
-    workDescription: String
-    jobCompleted: Boolean
-  }
+    type Experience {
+        _id: ID
+        workType: String
+        workDescription: String
+        workImages: [String]
+    }
 
-  type Auth {
-    token: ID
-    user: User
-  }
+    type Review {
+        _id: ID
+        reviewText: String
+        reviewAuthor: String
+        reviewScore: Int
+        createdDate: String
+    }
 
-  type Query {
-    categories: [Category]
-    businesses(category: ID, name: String): [Business]
-    getBusinessesById(_id: ID!): Business
-    getBusinessesByCategory(category: String!): Business
-    user: User
-    reviews: [Review]
-  }
+    type Auth {
+        token: ID
+        user: User
+    }
 
-  type Mutation {
-    addUser(
-      firstName: String!
-      lastName: String!
-      email: String!
-      password: String!
-    ): Auth
-    updateUser(
-      firstName: String
-      lastName: String
-      email: String
-      password: String
-    ): User
-    login(email: String!, password: String!): Auth
-  }
+    type Query {
+        users: [User]
+        user(fullName: String!): User
+        businesss(fullName: String): [Business]
+        businessCategory(name: String): [Business]
+        business(businessId: ID!): Business
+        me: User
+    }
+
+    type Mutation {
+        addUser(fullName: String!, email: String!, password: String!): Auth
+        login(email: String!, password: String!): Auth
+        addBusiness(
+            name: String!
+            description: String!
+            category: ID!
+        ): Business
+        addReview(
+            businessId: ID!
+            reviewText: String!
+            reviewScore: Int!
+        ): Business
+        addExperience(
+            businessId: ID!
+            workType: String!
+            workDescription: String!
+        ): Business
+        removeBusiness(businessId: ID!): Business
+        removeReview(businessId: ID!, reviewId: ID!): Business
+        removeExperience(businessId: ID!, experienceId: ID!): Business
+    }
+
 `;
 
 module.exports = typeDefs;

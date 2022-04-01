@@ -53,23 +53,23 @@ export const Profile = () => {
 };
 
 const ProfileInfoWrapper = styled.article`
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-
-  .smallCards-Container,
-  .largeCard-Container {
-    padding: 3em;
-  }
-  .smallCards-Container {
-    flex: 1 1 30%;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    row-gap: 2em;
-  }
+    flex-wrap: wrap;
+    width: 100%;
 
-  .largeCard-Container {
-    flex: 1 1 65%;
-  }
+    .smallCards-Container,
+    .largeCard-Container {
+        padding: 3em;
+    }
+    .smallCards-Container {
+        flex: 1 1 30%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        row-gap: 2em;
+    }
+
+    .largeCard-Container {
+        flex: 1 1 65%;
+    }
 `;
