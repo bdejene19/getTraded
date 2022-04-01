@@ -2,24 +2,14 @@ const db = require('./connection');
 const { User, Business, Category } = require('../models');
 const userSeeds = require('./userSeeds.json');
 const businessSeeds = require('./businessSeeds.json');
+const categorySeeds = require('./categorySeeds.json');
 
 db.once('open', async () => {
     try {
         await Category.deleteMany({});
 
-        const categories = await Category.insertMany([
-            { name: 'Carpet' },
-            { name: 'Carpenter' },
-            { name: 'Auto Mechanic' },
-            { name: 'Electrician' },
-            { name: 'Landscaper' },
-            { name: 'Locksmith' },
-            { name: 'Painter' },
-            { name: 'Plumber' },
-        ]);
+        const categories = await Category.create(categorySeeds);
         console.log('Categories seeded');
-
-        // await Business.deleteMany();
 
         // const businesses = await Business.insertMany(businessSeeds);
 

@@ -1,8 +1,8 @@
 [
    
     {
-        "name": "Carpet Muncher",
-        "description": "We tear up your old carpets. Count on us for your next carpet renovation!",
+        "name": "Grass Master",
+        "description": "Count on us for great green grass. Hundreds of satisfied customers!",
         "owner": "Brian Kernighan"
     },
     {
@@ -11,7 +11,7 @@
         "owner": "Max Kanat-Alexander"
     },
     {
-        "name": "One of a Kind Mechanic",
+        "name": "One of a Kind Plumbing",
         "description": "We strive to be the best in the business. We are always looking for new and exciting ideas to make our customers happy.",
         "owner": "Kent Beck"
     },
