@@ -111,7 +111,7 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "start": "node server.js",
         "watch": "nodemon",
-        "seed": "node config/seeds.js"
+        "seed": "node seeds/index.js"
     },
     "keywords": [],
     "author": "Bemnet",
