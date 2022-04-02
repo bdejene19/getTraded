@@ -49,7 +49,7 @@ const typeDefs = gql`
     users: [User]
     user(fullName: String!): User
     businesses(fullName: String): [Business]
-    businessesCategory(name: String): [Business]
+    businessesCategory(categoryName: String): [Business]
     getBusiness(businessId: ID!): Business
     me: User
   }
