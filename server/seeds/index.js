@@ -1,59 +1,43 @@
-const db = require("../config/connection");
-const { User, Business, Category } = require("../models/index");
-const userSeeds = require("./userSeeds.json");
-const businessSeeds = require("./businessSeeds.json");
-const categorySeeds = require("./categorySeeds.json");
 
-db.once("open", async () => {
-  try {
-    await Category.deleteMany({}).catch((err) => err);
-    await User.deleteMany({}).catch((err) => err);
-    await Business.deleteMany({}).catch((err) => err);
+const db = require('../config/connection');
+const { User, Business } = require('../models/index');
+const userSeeds = require('./userSeeds.json');
+const businessSeeds = require('./businessSeeds');
+//const categorySeeds = require('./categorySeeds.json');
 
-    const categories = await Category.create(categorySeeds).catch((err) => err);
 
-    console.log("Categories seeded");
-    await User.create(userSeeds);
+db.once('open', async () => {
+    try {
+        await User.deleteMany({}).catch((err) => err);
+        await Business.deleteMany({}).catch((err) => err);
 
-    console.log("Users seeded");
+        await User.create(userSeeds);
 
-    //seed businesses but also add created business id to user business's array
-    for (let i = 0; i < businessSeeds.length; i++) {
-      const { _id, owner } = await Business.create(businessSeeds[i]).catch(
-        (err) => err
-      );
+        console.log('Users seeded');
 
-      const user = await User.findOneAndUpdate(
-        { fullName: owner },
-        {
-          $addToSet: {
-            business: _id,
-          },
+
+        //seed businesses but also add created business id to user business's array
+        for (let i = 0; i < businessSeeds.length; i++) {
+            const { _id, owner } = await Business.create(
+                businessSeeds[i]
+            ).catch((err) => err);
+            await User.findOneAndUpdate(
+                { fullName: owner },
+                {
+                    $addToSet: {
+                        business: _id,
+                    },
+                }
+            ).catch((err) => err);
+
         }
-      ).catch((err) => err);
+    } catch (err) {
+        console.error(err);
+        process.exit(1);
     }
 
-    //add category ids to respective businesses in businessSeeds
-    for (let i = 0; i < businessSeeds.length; i++) {
-      const { _id } = await Business.findOne({
-        name: businessSeeds[i].name,
-      });
-      console.log(categories[i]);
-      await Business.findOneAndUpdate(
-        { _id: _id },
-        {
-          category: categories[i].name,
-        }
-      );
-    }
-  } catch (err) {
-    console.error(err);
-    process.exit(1);
-  }
+    console.log('Businesss Seeded!');
+    console.log('Seeding all done!');
+    process.exit();
 
-  let u = await Business.find({}).populate("category");
-  console.log(u);
-  console.log("Businesss Seeded!");
-  console.log("Seeding all done!");
-  process.exit();
 });

@@ -63,8 +63,31 @@ const businessSchema = new Schema({
         type: String,
         required: true,
         trim: true,
-      },
-      reviewScore: {
+    },
+    category: {
+        type: String,
+        required: true,
+        trim: true,
+    },
+    experience: [
+        {
+            workType: {
+                type: String,
+                required: true,
+            },
+
+            workDescription: {
+                type: String,
+                maxlength: 500,
+                required: true,
+            },
+            workImages: {
+                type: [String],
+                default: [],
+            },
+        },
+    ],
+    avgScore: {
         type: Number,
         default: 0,
         min: 0,
