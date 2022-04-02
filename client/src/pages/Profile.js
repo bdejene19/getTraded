@@ -9,17 +9,17 @@ import { QUERY_BUSINESS_BY_ID } from "../utils/queries";
 import { useParams } from "react-router-dom";
 
 export const Profile = () => {
-  // const { businessId } = useParams();
+  const { businessId } = useParams();
   const { data, loading, error } = useQuery(QUERY_BUSINESS_BY_ID, {
-    variables: { id: "62487b5ef45df9fb84aeed46" },
+    variables: { id: businessId },
   });
-  console.log(JSON.stringify(error, null, 2));
+  // console.log(JSON.stringify(error, null, 2));
   // console.log(error);
   console.log("d: ", loading, data);
 
   return (
     <Container>
-      {loading ? (
+      {/* {loading ? (
         <h1>...loading</h1>
       ) : (
         <ProfileInfoWrapper>
@@ -39,7 +39,7 @@ export const Profile = () => {
             ></LargeProfileCard>
           </div>
         </ProfileInfoWrapper>
-      )}
+      )} */}
       <ProfileInfoWrapper>
         <div className="smallCards-Container">
           <SmallProfileCard

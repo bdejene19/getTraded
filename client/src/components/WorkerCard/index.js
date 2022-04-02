@@ -6,7 +6,7 @@ export default function WorkerCard(props) {
   return (
     <CardContainer>
       <div>
-        <p>{props.fullName}</p>
+        <p>{props.businessName}</p>
         <p>{props.workCategory}</p>
       </div>
       <div className="recentWork-btn">
@@ -14,7 +14,7 @@ export default function WorkerCard(props) {
       </div>
 
       <div className="viewBusiness-btn">
-        <Link to={"/profiles"}>
+        <Link to={`/profiles/${props.businessId}`}>
           <button id="viewBusiness">View Business</button>
         </Link>
       </div>
