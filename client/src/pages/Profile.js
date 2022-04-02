@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import LargeProfileCard from "../components/LargeProfileCard";
 import PreviousWork from "../components/PreviousWork";
@@ -9,32 +9,37 @@ import { QUERY_BUSINESS_BY_ID } from "../utils/queries";
 import { useParams } from "react-router-dom";
 
 export const Profile = () => {
-  const { businessId } = useParams();
-  const { loading, error, data } = useQuery(QUERY_BUSINESS_BY_ID, {
-    variables: businessId,
+  // const { businessId } = useParams();
+  const { data, loading, error } = useQuery(QUERY_BUSINESS_BY_ID, {
+    variables: { id: "62487b5ef45df9fb84aeed46" },
   });
+  console.log(JSON.stringify(error, null, 2));
+  // console.log(error);
+  console.log("d: ", loading, data);
 
   return (
     <Container>
-      {/* {loading ? (
+      {loading ? (
         <h1>...loading</h1>
       ) : (
         <ProfileInfoWrapper>
           <div className="smallCards-Container">
             <SmallProfileCard
               cardHeader="Average Work Rating"
-              cardContent={data.score}
+              cardContent={data.getBusiness.avgScore}
             />
             <SmallProfileCard cardHeader="Completed Jobs" cardContent="7" />
           </div>
           <div className="largeCard-Container">
             <LargeProfileCard
-              fullName="Bemnet Dejene"
-              about={data.description}
+              businessName={data.getBusiness.name}
+              fullName={data.getBusiness.owner}
+              about={data.getBusiness.description}
+              previousWork={[]}
             ></LargeProfileCard>
           </div>
         </ProfileInfoWrapper>
-      )} */}
+      )}
       <ProfileInfoWrapper>
         <div className="smallCards-Container">
           <SmallProfileCard
@@ -53,23 +58,23 @@ export const Profile = () => {
 };
 
 const ProfileInfoWrapper = styled.article`
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+
+  .smallCards-Container,
+  .largeCard-Container {
+    padding: 3em;
+  }
+  .smallCards-Container {
+    flex: 1 1 30%;
     display: flex;
-    flex-wrap: wrap;
-    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 2em;
+  }
 
-    .smallCards-Container,
-    .largeCard-Container {
-        padding: 3em;
-    }
-    .smallCards-Container {
-        flex: 1 1 30%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        row-gap: 2em;
-    }
-
-    .largeCard-Container {
-        flex: 1 1 65%;
-    }
+  .largeCard-Container {
+    flex: 1 1 65%;
+  }
 `;
