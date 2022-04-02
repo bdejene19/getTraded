@@ -15,7 +15,7 @@ export const Hero = () => {
       <ShortcutsWrapper>
         <ShortCut
           tradeDisplay={<ForestIcon className="icon" />}
-          tradeTitle="Land Scaping"
+          tradeTitle="Landscaping"
         ></ShortCut>
         <ShortCut
           tradeDisplay={<ElectricBoltIcon className="icon" />}

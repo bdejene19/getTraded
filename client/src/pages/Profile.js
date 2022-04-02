@@ -19,26 +19,28 @@ export const Profile = () => {
 
   return (
     <Container>
-      {/* {loading ? (
+      {loading ? (
         <h1>...loading</h1>
       ) : (
         <ProfileInfoWrapper>
           <div className="smallCards-Container">
             <SmallProfileCard
               cardHeader="Average Work Rating"
-              cardContent={data.score}
+              cardContent={data.getBusiness.avgScore}
             />
             <SmallProfileCard cardHeader="Completed Jobs" cardContent="7" />
           </div>
           <div className="largeCard-Container">
             <LargeProfileCard
-              fullName="Bemnet Dejene"
-              about={data.description}
+              businessName={data.getBusiness.name}
+              fullName={data.getBusiness.owner}
+              about={data.getBusiness.description}
+              previousWork={[]}
             ></LargeProfileCard>
           </div>
         </ProfileInfoWrapper>
-      )} */}
-      <ProfileInfoWrapper>
+      )}
+      {/* <ProfileInfoWrapper>
         <div className="smallCards-Container">
           <SmallProfileCard
             cardHeader="Average Work Rating"
@@ -49,7 +51,7 @@ export const Profile = () => {
         <div className="largeCard-Container">
           <LargeProfileCard fullName="Bemnet Dejene "></LargeProfileCard>
         </div>
-      </ProfileInfoWrapper>
+      </ProfileInfoWrapper> */}
       <PreviousWork></PreviousWork>
     </Container>
   );
