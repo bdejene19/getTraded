@@ -1,7 +1,7 @@
 const db = require("../config/connection");
 const { User, Business, Category } = require("../models/index");
 const userSeeds = require("./userSeeds.json");
-const businessSeeds = require("./businessSeeds");
+const businessSeeds = require("./businessSeeds.json");
 const categorySeeds = require("./categorySeeds.json");
 
 db.once("open", async () => {
@@ -22,6 +22,7 @@ db.once("open", async () => {
       const { _id, owner } = await Business.create(businessSeeds[i]).catch(
         (err) => err
       );
+
       const user = await User.findOneAndUpdate(
         { fullName: owner },
         {
@@ -31,17 +32,17 @@ db.once("open", async () => {
         }
       ).catch((err) => err);
     }
+
     //add category ids to respective businesses in businessSeeds
     for (let i = 0; i < businessSeeds.length; i++) {
       const { _id } = await Business.findOne({
         name: businessSeeds[i].name,
       });
-
       console.log(categories[i]);
       await Business.findOneAndUpdate(
         { _id: _id },
         {
-          category: categories[i],
+          category: categories[i].name,
         }
       );
     }

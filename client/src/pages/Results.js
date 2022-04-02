@@ -7,15 +7,14 @@ import { useQuery } from "@apollo/client";
 import { QUERY_BUSINESS_BY_CATEGORY } from "../utils/queries";
 export default function Results() {
   let { tradesType } = useParams();
+  console.log(tradesType);
 
   const { loading, error, data } = useQuery(QUERY_BUSINESS_BY_CATEGORY, {
-    variables: { tradesType },
+    variables: {
+      categoryName: tradesType,
+    },
   });
-  if (error) {
-    console.log(error);
-  } else {
-    console.log(data);
-  }
+  console.log(error);
   const [results, setResults] = useState(data);
 
   return (

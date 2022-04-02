@@ -18,23 +18,42 @@ const resolvers = {
       return Business.find(params).sort({ createdAt: -1 }).populate("category");
     },
     //returns all businesss from a specific category
-    businessesCategory: async (parent, { category, name }) => {
-      const params = {};
-      if (category) {
-        params.category = category;
-      }
-      if (name) {
-        params.name = {
-          $regex: name,
+    businessesCategory: async (parent, { categoryName }) => {
+      if (categoryName) {
+        const searchedCategory = {
+          category: categoryName,
         };
-      }
 
-      //return Business.find(params).sort({ createdAt: -1 });
-      return await Business.find(params).populate("category");
+        let filteredBusinesses = await Business.find(searchedCategory)
+          .populate("category")
+          .catch((err) => err);
+        console.log("f: ", filteredBusinesses);
+        if (filteredBusinesses) {
+          return filteredBusinesses;
+        }
+      }
+      // const params = {};
+      // if (category) {
+      //   params.category = category;
+      // }
+      // console.log("========================", category);
+      // if (name) {
+      //   params.name = {
+      //     $regex: name,
+      //   };
+      // }
+
+      // return Business.find(params).sort({ createdAt: -1 });
+      // return await Business.find(params)
+      //   .populate("category")
+      //   .catch((err) => console.log(err));
     },
     //returns specific business using business id
-    business: async (parent, { businessId }) => {
-      return Business.findOne({ _id: businessId });
+    getBusiness: async (parent, { businessId }, context) => {
+      const businessFound = await Business.findOne({ _id: businessId })
+        .populate("category")
+        .catch((err) => err);
+      return businessFound;
     },
     //will get current logged in user info if logged in if not will throw error
     me: async (parent, args, context) => {

@@ -3,21 +3,36 @@
     {
         "name": "Grass Master",
         "description": "Count on us for great green grass. Hundreds of satisfied customers!",
-        "owner": "Brian Kernighan"
+        "owner": "Brian Kernighan",
+        "category": "Landscaping"
     },
     {
         "name": "Best Carpenter",
         "description": "From cabinets to any custom wood work we are here to serve you!",
-        "owner": "Max Kanat-Alexander"
+        "owner": "Max Kanat-Alexander",
+        "category": "Carpenter"
+
+
     },
     {
         "name": "One of a Kind Plumbing",
         "description": "We strive to be the best in the business. We are always looking for new and exciting ideas to make our customers happy.",
-        "owner": "Kent Beck"
+        "owner": "Kent Beck",
+        "category": "Plumber"
+
     },
     {
         "name": "Electrified Electricians",
         "description": "Electrical work is our passion. We are always looking for new and exciting ideas to make our customers happy.",
-        "owner": "Edward V. Berard"
+        "owner": "Edward V. Berard",
+        "category": "Electrician"
+
+    },
+    {
+        "name": "Splash Where",
+        "description": "A mobile on the go group of painters, putting out high quality work and reasonable fees, while keeping you happy with your color choice!",
+        "owner": "Van Gohing Heir",
+        "category": "Painter"
+
     }
 ]

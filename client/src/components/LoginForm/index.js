@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { Link } from "react-router-dom";
-import { LOGIN } from "../../utils/mutations";
+// import { LOGIN } from "../../utils/mutations";
 import Auth from "../../utils/auth";
 import styled from "styled-components";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
@@ -9,20 +9,20 @@ import GoogleSignIn from "./GoogleSignIn";
 
 export default function LoginForm() {
   const [formState, setFormState] = useState({ email: "", password: "" });
-  const [login, { error }] = useMutation(LOGIN);
+  // const [login, { error }] = useMutation(LOGIN);
 
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      const mutationResponse = await login({
-        variables: { email: formState.email, password: formState.password },
-      });
-      const token = mutationResponse.data.login.token;
-      Auth.login(token);
-    } catch (e) {
-      console.log(e);
-    }
-  };
+  // const handleFormSubmit = async (event) => {
+  //   event.preventDefault();
+  //   try {
+  //     const mutationResponse = await login({
+  //       variables: { email: formState.email, password: formState.password },
+  //     });
+  //     const token = mutationResponse.data.login.token;
+  //     Auth.login(token);
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -33,7 +33,7 @@ export default function LoginForm() {
   };
 
   return (
-    <LoginFormWrapper onSubmit={handleFormSubmit}>
+    <LoginFormWrapper>
       <h3>Sign In to getTraded</h3>
       <GoogleSignIn></GoogleSignIn>
       <div id="login-divider">
@@ -41,13 +41,7 @@ export default function LoginForm() {
         <p>or sign in with email</p>
       </div>
       <div className="flex-row space-between my-2">
-        <input
-          placeholder="Email"
-          name="email"
-          type="email"
-          id="email"
-          onChange={handleChange}
-        />
+        <input placeholder="Email" name="email" type="email" id="email" />
       </div>
       <div className="  flex-row space-between my-2">
         <input
@@ -58,11 +52,11 @@ export default function LoginForm() {
           onChange={handleChange}
         />
       </div>
-      {error ? (
-        <div>
-          <p className="error-text">The provided credentials are incorrect</p>
-        </div>
-      ) : null}
+      {/* {error ? (
+            <div>
+              <p className="error-text">The provided credentials are incorrect</p>
+            </div>
+          ) : null} */}
       <div className="flex-row flex-end">
         <button type="submit">
           <ExitToAppIcon /> Sign In
@@ -78,10 +72,11 @@ export default function LoginForm() {
   );
 }
 
-const LoginFormWrapper = styled.form`
+export const LoginFormWrapper = styled.form`
   height: 90%;
   flex: 1 1 30%;
   text-align: center;
+
   div {
     display: flex;
     flex-direction: column;
