@@ -51,7 +51,7 @@ This app was created to help users locate tradespeople and tradespeople share th
 
 ### contributing
 
-This application was created by <a href="https://github.com/bdejene19" target="_blank">Bemnet Dejene</a>, <a href="https://github.com/ernestosanchez" target="_blank">Ernesto Sanchez</a>, and <a href="https://github.com/mathewosad" target="_blank">Mathew Osadolor</a>.
+This application was created by <a href="https://github.com/bdejene19" target="_blank">Bemnet Dejene</a>, <a href="https://github.com/ernestosanchezCS" target="_blank">Ernesto Sanchez</a>, and <a href="https://github.com/mathewosad" target="_blank">Mathew Osadolor</a>.
 
 <br>
 
