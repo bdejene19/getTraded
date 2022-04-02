@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
+import AddBusiness from "./AddBusiness";
 // import Auth from "../utils/auth";
 // import { ADD_USER } from "../utils/mutations";
+
 import { LoginFormWrapper } from "../LoginForm/index";
 import ExitToApp from "@mui/icons-material/ExitToApp";
 export default function SignUp() {
+  const [businessAdded, setBusinessAdded] = useState(false);
   const [formState, setFormState] = useState({ email: "", password: "" });
   // const [addUser] = useMutation(ADD_USER);
 
@@ -30,6 +33,9 @@ export default function SignUp() {
       [name]: value,
     });
   };
+  useEffect(() => {
+    console.log("hello");
+  }, [businessAdded]);
   return (
     <LoginFormWrapper id="signup-wrapper">
       <h3>Sign up to getTraded</h3>
@@ -57,25 +63,18 @@ export default function SignUp() {
             onChange={handleChange}
           />
         </div>
-
-        <div className="flex-row space-between my-2">
-          <input
-            placeholder="Phone Number"
-            name="phone"
-            type="text"
-            id="phone"
-          />
-        </div>
-
-        <div className="  flex-row space-between my-2">
-          <input
-            placeholder="Country"
-            name="country"
-            type="text"
-            id="country"
-          />
-        </div>
       </div>
+
+      <div id="includeBusiness-wrapper">
+        <label for="addBusiness">Would you like to add a business?</label>
+        <input
+          name="addBusiness"
+          type="checkbox"
+          id="addBusiness"
+          onClick={(e) => setBusinessAdded(!businessAdded)}
+        />
+      </div>
+      {businessAdded ? <AddBusiness></AddBusiness> : null}
 
       {/* {error ? (
           <div>
@@ -84,13 +83,13 @@ export default function SignUp() {
         ) : null} */}
       <div className="flex-row flex-end">
         <button type="submit">
-          <ExitToApp /> Sign In
+          <ExitToApp /> Sign Un
         </button>
       </div>
       <p>
         Already have an account?
         <Link to="/login" className="signUp-btn">
-          Sign Up
+          Sign Ip
         </Link>
       </p>
     </LoginFormWrapper>
