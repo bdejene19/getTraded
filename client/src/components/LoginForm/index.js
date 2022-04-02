@@ -76,6 +76,7 @@ export const LoginFormWrapper = styled.form`
   height: 90%;
   flex: 1 1 30%;
   text-align: center;
+
   div {
     display: flex;
     flex-direction: column;
