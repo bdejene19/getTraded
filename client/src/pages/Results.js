@@ -11,9 +11,12 @@ export default function Results() {
 
   const { loading, error, data } = useQuery(QUERY_BUSINESS_BY_CATEGORY, {
     variables: {
-      categoryName: tradesType,
+      category: tradesType,
     },
   });
+  console.log("q: ", data?.businessesCategory);
+  const gqlResults = data?.businessesCategory || [];
+  console.log("da: ", data);
   console.log(error);
   const [results, setResults] = useState(data);
 
@@ -24,32 +27,19 @@ export default function Results() {
       </h3>
 
       <ResultsCardsWrapper>
-        {/* {loading ? (
+        {loading ? (
           <h1>...loading</h1>
+        ) : gqlResults.length === 0 ? (
+          <h3>No results</h3>
         ) : (
-          data.map((profile) => (
+          gqlResults?.map((business) => (
             <WorkerCard
-              fullName={profile.fullName}
-              workCategory={profile.catgeory}
+              businessName={business.name}
+              workCategory={business.category}
+              businessId={business._id}
             ></WorkerCard>
           ))
-        )} */}
-        <WorkerCard
-          fullName="Bemnet Dejene"
-          workCategory="Electrician"
-        ></WorkerCard>
-        <WorkerCard
-          fullName="Bemnet Dejene"
-          workCategory="Electrician"
-        ></WorkerCard>
-        <WorkerCard
-          fullName="Bemnet Dejene"
-          workCategory="Electrician"
-        ></WorkerCard>
-        <WorkerCard
-          fullName="Bemnet Dejene"
-          workCategory="Electrician"
-        ></WorkerCard>
+        )}
       </ResultsCardsWrapper>
     </Container>
   );

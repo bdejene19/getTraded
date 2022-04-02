@@ -23,15 +23,15 @@ export const Hero = () => {
         ></ShortCut>
         <ShortCut
           tradeDisplay={<ShowerIcon className="icon" />}
-          tradeTitle="Plumber"
+          tradeTitle="Plumbing"
         ></ShortCut>
         <ShortCut
           tradeDisplay={<FormatPaintIcon className="icon" />}
-          tradeTitle="Painter"
+          tradeTitle="Painting"
         ></ShortCut>
         <ShortCut
           tradeDisplay={<CarpenterIcon className="icon" />}
-          tradeTitle="Carpenter"
+          tradeTitle="Carpenting"
         ></ShortCut>
       </ShortcutsWrapper>
       <About></About>
