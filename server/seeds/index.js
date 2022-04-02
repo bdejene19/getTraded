@@ -50,6 +50,9 @@ db.once("open", async () => {
     console.error(err);
     process.exit(1);
   }
+
+  let u = await Business.find({}).populate("category");
+  console.log(u);
   console.log("Businesss Seeded!");
   console.log("Seeding all done!");
   process.exit();
