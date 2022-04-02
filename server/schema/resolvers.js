@@ -3,7 +3,6 @@ const { User, Business, Category } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
-
     Query: {
         //returns all users and ascoiated businesses
         users: async () => {
@@ -90,19 +89,12 @@ const resolvers = {
         ) => {
             if (context.user) {
                 //here below depending on front end if we pass either category actual name or the category id dealt with both ways one will work
-                const categoryGet = await Category.findOne({ name: category });
                 const business = await Business.create({
                     name,
                     description,
-                    //note below might not work so im doing it again line 81 in case should check for doube in db
-                    $addToSet: { category: category },
+                    category,
                     owner: context.user.fullName,
                 });
-                await Business.findOneAndUpdate(
-                    { _id: business._id },
-                    { $addToSet: { category: categoryGet._id } },
-                    { new: true, runValidators: true }
-                );
 
                 await User.findOneAndUpdate(
                     { _id: context.user._id },
