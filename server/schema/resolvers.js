@@ -15,7 +15,7 @@ const resolvers = {
     //returns all businesses
     businesses: async (parent, { fullName }) => {
       const params = fullName ? { fullName } : {};
-      return Business.find(params).sort({ createdAt: -1 });
+      return Business.find(params).sort({ createdAt: -1 }).populate("category");
     },
     //returns all businesss from a specific category
     businessesCategory: async (parent, { category, name }) => {

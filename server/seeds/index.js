@@ -36,12 +36,12 @@ db.once("open", async () => {
       const { _id } = await Business.findOne({
         name: businessSeeds[i].name,
       });
+
+      console.log(categories[i]);
       await Business.findOneAndUpdate(
         { _id: _id },
         {
-          $addToSet: {
-            category: categories[i]._id,
-          },
+          category: categories[i],
         }
       );
     }
@@ -49,6 +49,9 @@ db.once("open", async () => {
     console.error(err);
     process.exit(1);
   }
+
+  let u = await Business.find({}).populate("category");
+  console.log(u);
   console.log("Businesss Seeded!");
   console.log("Seeding all done!");
   process.exit();
