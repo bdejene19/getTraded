@@ -1,23 +1,50 @@
 [
-   
     {
         "name": "Grass Master",
         "description": "Count on us for great green grass. Hundreds of satisfied customers!",
-        "owner": "Brian Kernighan"
+        "owner": "Brian Kernighan",
+        "category": "Landscaping"
     },
     {
         "name": "Best Carpenter",
         "description": "From cabinets to any custom wood work we are here to serve you!",
-        "owner": "Max Kanat-Alexander"
+        "owner": "Max Kanat-Alexander",
+        "category": "Carpentry"
     },
     {
         "name": "One of a Kind Plumbing",
         "description": "We strive to be the best in the business. We are always looking for new and exciting ideas to make our customers happy.",
-        "owner": "Kent Beck"
+        "owner": "Kent Beck",
+        "category": "Plumbing"
     },
     {
         "name": "Electrified Electricians",
         "description": "Electrical work is our passion. We are always looking for new and exciting ideas to make our customers happy.",
-        "owner": "Edward V. Berard"
+        "owner": "Edward V. Berard",
+        "category": "Electrical"
+    },
+    {
+        "name": "Lawn Maintenance",
+        "description": "Contact us for all your lawn needs. We are always looking for new and exciting ideas to make our customers happy.",
+        "owner": "Alan Kay",
+        "category": "Landscaping"
+    },
+    {
+        "name": "Cabinets and Wood Work",
+        "description": "Got a project in mind? We are always looking for new and exciting ideas to make our customers happy. Woodwork is our passion.",
+        "owner": "Lernantino Space",
+        "category": "Carpentry"
+    },
+    {
+        "name": "Honest Plumbers",
+        "description": "Count on us for a fair and honest work. We have been working in plumbing for over 13 years and we love to make our customers happy.",
+        "owner": "David Thomas",
+        "category": "Plumbing"
+    },
+    {
+        "name": "Power Rangers Electrical",
+        "description": "Our knowledge of electrical work is second to none. We are always looking for new and exciting ideas to make our customers happy. Try us today you will not be dissapointed.",
+        "owner": "Donald Knuth",
+        "category": "Electrical"
     }
 ]

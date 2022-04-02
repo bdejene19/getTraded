@@ -24,12 +24,11 @@ const businessSchema = new Schema({
         required: true,
         trim: true,
     },
-    category: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'Category',
-        },
-    ],
+    category: {
+        type: String,
+        required: true,
+        trim: true,
+    },
     experience: [
         {
             workType: {
