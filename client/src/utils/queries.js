@@ -127,31 +127,43 @@ export const QUERY_ME = gql`
 
 /** For search results - handles shortcut to view business by category */
 export const QUERY_BUSINESS_BY_CATEGORY = gql`
-  query searchBusinessCategories($category: String!) {
+  query businessesCategory($category: String!) {
     businessesCategory(category: $category) {
       _id
+      createdDate
       name
       description
       owner
-      avgScore
       category
+      avgScore
+      experience {
+        workType
+        workDescription
+      }
     }
   }
 `;
 
 /** View specific Business profile page */
 export const QUERY_BUSINESS_BY_ID = gql`
-  query businessById($id: ID!) {
-    business(_id: $id) {
+  query businessById($businessId: ID!) {
+    businessById(businessId: $businessId) {
       _id
       createdDate
       name
       description
       owner
-      experience
+      experience {
+        workType
+        workDescription
+      }
       category
-      score
-      reviews
+      avgScore
+      reviews {
+        reviewText
+        reviewAuthor
+        reviewScore
+      }
     }
   }
 `;

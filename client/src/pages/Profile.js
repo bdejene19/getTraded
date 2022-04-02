@@ -10,37 +10,44 @@ import { useParams } from "react-router-dom";
 
 export const Profile = () => {
   const { businessId } = useParams();
+  console.log("href id: ", businessId);
+
   const { data, loading, error } = useQuery(QUERY_BUSINESS_BY_ID, {
-    variables: { id: businessId },
+    variables: {
+      businessId: businessId,
+    },
   });
+
+  const profileData = data?.businessById || null;
+  console.log(profileData);
   // console.log(JSON.stringify(error, null, 2));
   // console.log(error);
   console.log("d: ", loading, data);
 
   return (
     <Container>
-      {/* {loading ? (
+      {loading ? (
         <h1>...loading</h1>
       ) : (
         <ProfileInfoWrapper>
           <div className="smallCards-Container">
             <SmallProfileCard
               cardHeader="Average Work Rating"
-              cardContent={data.getBusiness.avgScore}
+              cardContent={profileData.avgScore}
             />
             <SmallProfileCard cardHeader="Completed Jobs" cardContent="7" />
           </div>
           <div className="largeCard-Container">
             <LargeProfileCard
-              businessName={data.getBusiness.name}
-              fullName={data.getBusiness.owner}
-              about={data.getBusiness.description}
-              previousWork={[]}
+              businessName={profileData.name}
+              fullName={profileData.owner}
+              about={profileData.description}
+              previousWork={profileData.experience}
             ></LargeProfileCard>
           </div>
         </ProfileInfoWrapper>
-      )} */}
-      <ProfileInfoWrapper>
+      )}
+      {/* <ProfileInfoWrapper>
         <div className="smallCards-Container">
           <SmallProfileCard
             cardHeader="Average Work Rating"
@@ -51,7 +58,7 @@ export const Profile = () => {
         <div className="largeCard-Container">
           <LargeProfileCard fullName="Bemnet Dejene "></LargeProfileCard>
         </div>
-      </ProfileInfoWrapper>
+      </ProfileInfoWrapper> */}
       <PreviousWork></PreviousWork>
     </Container>
   );
