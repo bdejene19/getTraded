@@ -9,18 +9,23 @@
         "name": "Best Carpenter",
         "description": "From cabinets to any custom wood work we are here to serve you!",
         "owner": "Max Kanat-Alexander",
+
         "category": "Carpentry"
+
     },
     {
         "name": "One of a Kind Plumbing",
         "description": "We strive to be the best in the business. We are always looking for new and exciting ideas to make our customers happy.",
         "owner": "Kent Beck",
+
         "category": "Plumbing"
+
     },
     {
         "name": "Electrified Electricians",
         "description": "Electrical work is our passion. We are always looking for new and exciting ideas to make our customers happy.",
         "owner": "Edward V. Berard",
+
         "category": "Electrical"
     },
     {
@@ -46,5 +51,6 @@
         "description": "Our knowledge of electrical work is second to none. We are always looking for new and exciting ideas to make our customers happy. Try us today you will not be dissapointed.",
         "owner": "Donald Knuth",
         "category": "Electrical"
+
     }
 ]

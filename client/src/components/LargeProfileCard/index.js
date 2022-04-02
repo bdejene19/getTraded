@@ -4,8 +4,9 @@ import styled from "styled-components";
 export default function LargeProfileCard(props) {
   return (
     <LargeCardWrapper>
-      <h3>{props.fullName}</h3>
+      <h3>{props.businessName}</h3>
       <h4>{props.businessField}</h4>
+      <h5>{props.fullName}</h5>
       <div className="about-section">
         <h4>About Me</h4>
         <p>{props.about}</p>

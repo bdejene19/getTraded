@@ -3,6 +3,7 @@ const { User, Business, Category } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
+
     Query: {
         //returns all users and ascoiated businesses
         users: async () => {

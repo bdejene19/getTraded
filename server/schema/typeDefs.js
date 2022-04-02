@@ -29,6 +29,7 @@ const typeDefs = gql`
         workImages: [String]
     }
 
+
     type Review {
         _id: ID
         reviewText: String
@@ -42,6 +43,7 @@ const typeDefs = gql`
         user: User
     }
 
+
     type Query {
         users: [User]
         user(fullName: String!): User
@@ -52,6 +54,7 @@ const typeDefs = gql`
         businessById(businessId: ID!): Business
         me: User
     }
+
 
     type Mutation {
         addUser(fullName: String!, email: String!, password: String!): Auth
