@@ -11,7 +11,7 @@ import { useParams } from "react-router-dom";
 export const Profile = () => {
   // const { businessId } = useParams();
   const { data, loading, error } = useQuery(QUERY_BUSINESS_BY_ID, {
-    variables: { id: "624730ed928d2b6d767214a2" },
+    variables: { id: "62487b5ef45df9fb84aeed46" },
   });
   console.log(JSON.stringify(error, null, 2));
   // console.log(error);
@@ -40,7 +40,7 @@ export const Profile = () => {
           </div>
         </ProfileInfoWrapper>
       )}
-      {/* <ProfileInfoWrapper>
+      <ProfileInfoWrapper>
         <div className="smallCards-Container">
           <SmallProfileCard
             cardHeader="Average Work Rating"
@@ -51,7 +51,7 @@ export const Profile = () => {
         <div className="largeCard-Container">
           <LargeProfileCard fullName="Bemnet Dejene "></LargeProfileCard>
         </div>
-      </ProfileInfoWrapper> */}
+      </ProfileInfoWrapper>
       <PreviousWork></PreviousWork>
     </Container>
   );
