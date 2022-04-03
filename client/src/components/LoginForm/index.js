@@ -29,6 +29,7 @@ export default function LoginForm() {
         const userId = data.login.user._id;
         window.location.replace(`/profiles/${userId}`);
       } else {
+        window.location.replace("/login");
       }
     } catch (e) {
       console.log(e);

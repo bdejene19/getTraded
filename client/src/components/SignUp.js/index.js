@@ -20,10 +20,9 @@ export default function SignUp() {
     event.preventDefault();
     const mutationResponse = await addUser({
       variables: {
+        fullName: formState.fullName,
         email: formState.email,
         password: formState.password,
-        firstName: formState.firstName,
-        lastName: formState.lastName,
       },
     });
     const token = mutationResponse.data.addUser.token;
@@ -39,7 +38,7 @@ export default function SignUp() {
   };
   useEffect(() => {}, [businessAdded]);
   return (
-    <LoginFormWrapper id="signup-wrapper" onClick={handleFormSubmit}>
+    <LoginFormWrapper id="signup-wrapper">
       <h3>Sign up to getTraded</h3>
       {/* <GoogleSignIn></GoogleSignIn> */}
 
@@ -87,7 +86,7 @@ export default function SignUp() {
           </div>
         ) : null} */}
       <div className="flex-row flex-end">
-        <button type="submit">
+        <button type="submit" onClick={handleFormSubmit}>
           <ExitToApp /> Sign Up
         </button>
       </div>
