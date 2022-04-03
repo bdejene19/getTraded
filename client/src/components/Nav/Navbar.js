@@ -54,13 +54,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export const Navbar = () => {
-  const [loggedIn, setLoggedIn] = React.useState(false);
-
-  React.useEffect(() => {
-    if (Auth.getProfile().data.email) {
-      setLoggedIn(true);
-    }
-  }, []);
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -71,30 +64,36 @@ export const Navbar = () => {
             color="inherit"
             aria-label="open drawer"
             sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
+          ></IconButton>
           <Typography
             variant="h6"
             noWrap
             component="div"
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+            onClick={() => window.location.replace("/")}
+            style={{ cursor: "pointer" }}
           >
             getTraded
           </Typography>
-          {loggedIn ? (
-            <Button variant="outlined" color="inherit" href="/login">
+
+          {Auth.loggedIn() ? (
+            <Button
+              variant="outlined"
+              color="inherit"
+              href="/login"
+              onClick={() => Auth.logout()}
+            >
               Logout
             </Button>
           ) : (
-            <div>
-              <Button variant="outlined" color="inherit" href="/login">
-                Login
-              </Button>
-              <Button variant="text" color="inherit" href="/signup">
-                SIGNUP
-              </Button>
-            </div>
+            <Button variant="outlined" color="inherit" href="/login">
+              Login
+            </Button>
+          )}
+          {Auth.loggedIn() ? null : (
+            <Button variant="text" color="inherit" href="/signup">
+              SIGNUP
+            </Button>
           )}
 
           <Search>
