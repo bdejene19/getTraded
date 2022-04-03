@@ -14,14 +14,14 @@ export default function AddBusiness() {
       </div>
       <div>
         <select placeholder="category" id="businessCategory">
-          <option>Electrician</option>
-          <option>Carpenter</option>
-          <option>Plumber</option>
-          <option>Landscaping</option>
+          <option value={"Electrician"}>Electrician</option>
+          <option value={"Carpentry"}>Carpentry</option>
+          <option value={"Plumbing"}>Plumbing</option>
+          <option value={"Landscaping"}>Landscaping</option>
         </select>
       </div>
       <div>
-        <label for="businessDescription"></label>
+        <label htmlFor="businessDescription"></label>
         <textarea
           placeholder="E.g. Leaf Layout is landscaping business that provides..."
           id="businessDescription"

@@ -20,10 +20,12 @@ export default function SignUp() {
     event.preventDefault();
     const mutationResponse = await addUser({
       variables: {
-        ...formState,
+        email: formState.email,
+        password: formState.password,
+        firstName: formState.firstName,
+        lastName: formState.lastName,
       },
     });
-
     const token = mutationResponse.data.addUser.token;
     Auth.login(token);
   };
@@ -53,14 +55,7 @@ export default function SignUp() {
           />
         </div>
         <div className="flex-row space-between my-2">
-          <input
-            placeholder="Email"
-            name="email"
-            type="email"
-            id="email"
-            value={formState.email}
-            onChange={handleChange}
-          />
+          <input placeholder="Email" name="email" type="email" id="email" />
         </div>
 
         <div className="  flex-row space-between my-2">
