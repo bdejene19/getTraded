@@ -9,6 +9,7 @@ import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
+import Auth from "../../utils/auth.js";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -63,25 +64,37 @@ export const Navbar = () => {
             color="inherit"
             aria-label="open drawer"
             sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
+          ></IconButton>
           <Typography
             variant="h6"
             noWrap
             component="div"
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+            onClick={() => window.location.replace("/")}
+            style={{ cursor: "pointer" }}
           >
             getTraded
           </Typography>
 
-          <Button variant="outlined" color="inherit" href="/login">
-            Login
-          </Button>
-
-          <Button variant="text" color="inherit" href="/signup">
-            SIGNUP
-          </Button>
+          {Auth.loggedIn() ? (
+            <Button
+              variant="outlined"
+              color="inherit"
+              href="/login"
+              onClick={() => Auth.logout()}
+            >
+              Logout
+            </Button>
+          ) : (
+            <Button variant="outlined" color="inherit" href="/login">
+              Login
+            </Button>
+          )}
+          {Auth.loggedIn() ? null : (
+            <Button variant="text" color="inherit" href="/signup">
+              SIGNUP
+            </Button>
+          )}
 
           <Search>
             <SearchIconWrapper>

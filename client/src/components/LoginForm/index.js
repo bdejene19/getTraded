@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { Link } from "react-router-dom";
 import { LOGIN } from "../../utils/mutations.js";
+import { QUERY_ME } from "../../utils/queries";
+
 import Auth from "../../utils/auth.js";
 import styled from "styled-components";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
@@ -16,14 +18,22 @@ export default function LoginForm() {
     event.preventDefault();
     console.log(formState);
     try {
-      console.log("try");
-
       const { data } = await login({
         variables: { ...formState },
+      }).catch((err) => {
+        alert("Invalid data entry");
+        return;
       });
       const token = data.login.token;
       Auth.login(token);
-      console.log(token._id);
+      if (Auth.getProfile().data.email) {
+        const userId2 = data.login;
+
+        const userId = data.login.user.business;
+        console.log(userId2, userId);
+        window.location.replace(`/profiles`);
+      } else {
+      }
     } catch (e) {
       console.log(e);
     }
