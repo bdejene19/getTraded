@@ -14,7 +14,7 @@ export default function WorkerCard(props) {
       </div>
 
       <div className="viewBusiness-btn">
-        <Link to={`/profiles/${props.businessId}`}>
+        <Link to={`/businesses/${props.businessId}`}>
           <button id="viewBusiness">View Business</button>
         </Link>
       </div>

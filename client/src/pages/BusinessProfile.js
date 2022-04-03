@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import LargeProfileCard from "../components/LargeProfileCard";
 import PreviousWork from "../components/PreviousWork";
@@ -8,9 +8,8 @@ import { useQuery } from "@apollo/client";
 import { QUERY_BUSINESS_BY_ID } from "../utils/queries";
 import { useParams } from "react-router-dom";
 
-export const Profile = () => {
+export const BusinessProfile = () => {
   const { businessId } = useParams();
-  console.log("href id: ", businessId);
 
   const { data, loading, error } = useQuery(QUERY_BUSINESS_BY_ID, {
     variables: {
@@ -18,11 +17,8 @@ export const Profile = () => {
     },
   });
 
-  const profileData = data?.businessById || null;
-  console.log(profileData);
+  const businessData = data?.businessById || null;
   // console.log(JSON.stringify(error, null, 2));
-  // console.log(error);
-  console.log("d: ", loading, data);
 
   return (
     <Container>
@@ -33,16 +29,16 @@ export const Profile = () => {
           <div className="smallCards-Container">
             <SmallProfileCard
               cardHeader="Average Work Rating"
-              cardContent={profileData.avgScore}
+              cardContent={businessData.avgScore}
             />
             <SmallProfileCard cardHeader="Completed Jobs" cardContent="7" />
           </div>
           <div className="largeCard-Container">
             <LargeProfileCard
-              businessName={profileData.name}
-              fullName={profileData.owner}
-              about={profileData.description}
-              previousWork={profileData.experience}
+              businessName={businessData.name}
+              fullName={businessData.owner}
+              about={businessData.description}
+              previousWork={businessData.experience}
             ></LargeProfileCard>
           </div>
         </ProfileInfoWrapper>

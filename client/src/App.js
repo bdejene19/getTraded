@@ -5,12 +5,13 @@ import { Home } from './pages/Home';
 
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 
-import Results from './pages/Results';
-import { Profile } from './pages/Profile';
-import TestLogin from './pages/TestLogin';
-import { Navbar } from './components/Nav/Navbar';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
+
+import Results from "./pages/Results";
+import { Navbar } from "./components/Nav/Navbar";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import { BusinessProfile } from "./pages/BusinessProfile";
+import UserProfile from "./pages/UserProfile";
 
 const apolloClient = new ApolloClient({
     uri: '/graphql',
@@ -18,31 +19,32 @@ const apolloClient = new ApolloClient({
 });
 
 function App() {
-    return (
-        <ApolloProvider client={apolloClient}>
-            <GlobalStyles>
-                <Navbar />
 
-                <BrowserRouter>
-                    <Routes>
-                        <Route path='/' element={<Home />}></Route>
-                        {/* <Route path="/login" element={<Login />}></Route> */}
-                        <Route path='/login' element={<Login />} />
-                        <Route path='/signup' element={<Signup />} />
+  return (
+    <ApolloProvider client={apolloClient}>
+      <GlobalStyles>
+        <Navbar />
 
-                        <Route
-                            path='/:tradesType'
-                            element={<Results />}
-                        ></Route>
-                        <Route
-                            path='/profiles/:businessId'
-                            element={<Profile />}
-                        ></Route>
-                    </Routes>
-                </BrowserRouter>
-            </GlobalStyles>
-        </ApolloProvider>
-    );
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home />}></Route>
+            {/* <Route path="/login" element={<Login />}></Route> */}
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+
+            <Route path="/:tradesType" element={<Results />}></Route>
+            <Route
+              path="/businesses/:businessId"
+              element={<BusinessProfile />}
+            ></Route>
+
+            <Route path="/profiles/:userId" element={<UserProfile />}></Route>
+          </Routes>
+        </BrowserRouter>
+      </GlobalStyles>
+    </ApolloProvider>
+  );
+
 }
 
 const GlobalStyles = styled.div`
