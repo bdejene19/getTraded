@@ -1,31 +1,42 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { Link } from "react-router-dom";
-// import { LOGIN } from "../../utils/mutations";
-import Auth from "../../utils/auth";
+import { LOGIN } from "../../utils/mutations.js";
+import Auth from "../../utils/auth.js";
 import styled from "styled-components";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import GoogleSignIn from "./GoogleSignIn";
+import decode from "jwt-decode";
 
 export default function LoginForm() {
   const [formState, setFormState] = useState({ email: "", password: "" });
-  // const [login, { error }] = useMutation(LOGIN);
+  const [login, { error, data }] = useMutation(LOGIN);
 
-  // const handleFormSubmit = async (event) => {
-  //   event.preventDefault();
-  //   try {
-  //     const mutationResponse = await login({
-  //       variables: { email: formState.email, password: formState.password },
-  //     });
-  //     const token = mutationResponse.data.login.token;
-  //     Auth.login(token);
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    console.log(formState);
+    try {
+      console.log("try");
+
+      const { data } = await login({
+        variables: { ...formState },
+      });
+      const token = data.login.token;
+      Auth.login(token);
+      console.log(token._id);
+    } catch (e) {
+      console.log(e);
+    }
+
+    setFormState({
+      email: "",
+      password: "",
+    });
+  };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
+
     setFormState({
       ...formState,
       [name]: value,
@@ -33,7 +44,7 @@ export default function LoginForm() {
   };
 
   return (
-    <LoginFormWrapper>
+    <LoginFormWrapper onSubmit={handleFormSubmit}>
       <h3>Sign In to getTraded</h3>
       <GoogleSignIn></GoogleSignIn>
       <div id="login-divider">
@@ -41,13 +52,21 @@ export default function LoginForm() {
         <p>or sign in with email</p>
       </div>
       <div className="flex-row space-between my-2">
-        <input placeholder="Email" name="email" type="email" id="email" />
+        <input
+          placeholder="Email"
+          name="email"
+          type="email"
+          value={formState.email}
+          onChange={handleChange}
+          id="email"
+        />
       </div>
       <div className="  flex-row space-between my-2">
         <input
           placeholder="Password"
           name="password"
           type="password"
+          value={formState.password}
           id="pwd"
           onChange={handleChange}
         />

@@ -33,9 +33,7 @@ export default function SignUp() {
       [name]: value,
     });
   };
-  useEffect(() => {
-    console.log("hello");
-  }, [businessAdded]);
+  useEffect(() => {}, [businessAdded]);
   return (
     <LoginFormWrapper id="signup-wrapper">
       <h3>Sign up to getTraded</h3>
@@ -83,13 +81,13 @@ export default function SignUp() {
         ) : null} */}
       <div className="flex-row flex-end">
         <button type="submit">
-          <ExitToApp /> Sign Un
+          <ExitToApp /> Sign Up
         </button>
       </div>
       <p>
         Already have an account?
         <Link to="/login" className="signUp-btn">
-          Sign Ip
+          Sign In
         </Link>
       </p>
     </LoginFormWrapper>
