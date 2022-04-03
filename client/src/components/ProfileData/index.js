@@ -2,6 +2,8 @@ import { Button } from "@mui/material";
 import React from "react";
 import styled from "styled-components";
 import { Container } from "../../pages/Home";
+import AddBusiness from "./AddBusiness";
+import BusinessForm from "./BusinessForm";
 
 export const ProfileData = (props) => {
   return (
@@ -16,6 +18,7 @@ export const ProfileData = (props) => {
       <p>Email: {props.email}</p>
 
       <ContactWrapper></ContactWrapper>
+      <AddBusiness></AddBusiness>
     </ProfileWrapper>
   );
 };

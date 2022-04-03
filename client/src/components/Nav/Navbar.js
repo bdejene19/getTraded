@@ -10,6 +10,7 @@ import InputBase from "@mui/material/InputBase";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import Auth from "../../utils/auth.js";
+import CottageIcon from "@mui/icons-material/Cottage";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -64,7 +65,20 @@ export const Navbar = () => {
             color="inherit"
             aria-label="open drawer"
             sx={{ mr: 2 }}
-          ></IconButton>
+          >
+            {Auth.loggedIn() ? (
+              <Button
+                onClick={() =>
+                  window.location.replace(
+                    `/profiles/${Auth.getProfile().data._id}`
+                  )
+                }
+                color="inherit"
+              >
+                <CottageIcon />
+              </Button>
+            ) : null}
+          </IconButton>
           <Typography
             variant="h6"
             noWrap
