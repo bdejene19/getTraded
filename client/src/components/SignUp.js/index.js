@@ -23,7 +23,7 @@ export default function SignUp() {
         ...formState,
       },
     });
-    console.log("mute data: ", mutationResponse);
+
     const token = mutationResponse.data.addUser.token;
     Auth.login(token);
   };
