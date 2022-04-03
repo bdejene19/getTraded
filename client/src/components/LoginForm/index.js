@@ -16,7 +16,6 @@ export default function LoginForm() {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(formState);
     try {
       const { data } = await login({
         variables: { ...formState },
@@ -27,11 +26,8 @@ export default function LoginForm() {
       const token = data.login.token;
       Auth.login(token);
       if (Auth.getProfile().data.email) {
-        const userId2 = data.login;
-
-        const userId = data.login.user.business;
-        console.log(userId2, userId);
-        window.location.replace(`/profiles`);
+        const userId = data.login.user._id;
+        window.location.replace(`/profiles/${userId}`);
       } else {
       }
     } catch (e) {

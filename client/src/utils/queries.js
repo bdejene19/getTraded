@@ -95,32 +95,8 @@ export const QUERY_ME = gql`
   query me {
     me {
       _id
-      fullName
+
       email
-      businesses {
-        _id
-        createdDate
-        name
-        description
-        owner
-        category {
-          _id
-          name
-        }
-        experience {
-          _id
-          workType
-          workDescription
-          workImages
-        }
-        avgScore
-        reviews {
-          _id
-          reviewText
-          reviewAuthor
-          reviewScore
-        }
-      }
     }
   }
 `;
