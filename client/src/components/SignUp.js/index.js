@@ -2,28 +2,30 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import AddBusiness from "./AddBusiness";
-// import Auth from "../utils/auth";
-// import { ADD_USER } from "../utils/mutations";
+import Auth from "../../utils/auth";
+import { ADD_USER } from "../../utils/mutations";
 
 import { LoginFormWrapper } from "../LoginForm/index";
 import ExitToApp from "@mui/icons-material/ExitToApp";
 export default function SignUp() {
   const [businessAdded, setBusinessAdded] = useState(false);
-  const [formState, setFormState] = useState({ email: "", password: "" });
-  // const [addUser] = useMutation(ADD_USER);
+  const [formState, setFormState] = useState({
+    fullName: "",
+    email: "",
+    password: "",
+  });
+  const [addUser, { error, data }] = useMutation(ADD_USER);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    // const mutationResponse = await addUser({
-    //   variables: {
-    //     email: formState.email,
-    //     password: formState.password,
-    //     firstName: formState.firstName,
-    //     lastName: formState.lastName,
-    //   },
-    // });
-    // const token = mutationResponse.data.addUser.token;
-    // Auth.login(token);
+    const mutationResponse = await addUser({
+      variables: {
+        ...formState,
+      },
+    });
+    console.log("mute data: ", mutationResponse);
+    const token = mutationResponse.data.addUser.token;
+    Auth.login(token);
   };
 
   const handleChange = (event) => {
@@ -35,7 +37,7 @@ export default function SignUp() {
   };
   useEffect(() => {}, [businessAdded]);
   return (
-    <LoginFormWrapper id="signup-wrapper">
+    <LoginFormWrapper id="signup-wrapper" onClick={handleFormSubmit}>
       <h3>Sign up to getTraded</h3>
       {/* <GoogleSignIn></GoogleSignIn> */}
 
@@ -46,10 +48,19 @@ export default function SignUp() {
             name="fullName"
             type="text"
             id="fullName"
+            value={formState.fullName}
+            onChange={handleChange}
           />
         </div>
         <div className="flex-row space-between my-2">
-          <input placeholder="Email" name="email" type="email" id="email" />
+          <input
+            placeholder="Email"
+            name="email"
+            type="email"
+            id="email"
+            value={formState.email}
+            onChange={handleChange}
+          />
         </div>
 
         <div className="  flex-row space-between my-2">
@@ -58,13 +69,14 @@ export default function SignUp() {
             name="password"
             type="password"
             id="pwd"
+            value={formState.password}
             onChange={handleChange}
           />
         </div>
       </div>
 
       <div id="includeBusiness-wrapper">
-        <label for="addBusiness">Would you like to add a business?</label>
+        <label htmlFor="addBusiness">Would you like to add a business?</label>
         <input
           name="addBusiness"
           type="checkbox"
