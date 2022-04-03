@@ -50,6 +50,8 @@ const businessSchema = new Schema({
     avgScore: {
         type: Number,
         default: 0,
+        min: 0,
+        max: 5,
     },
     reviews: [
         {
@@ -64,6 +66,12 @@ const businessSchema = new Schema({
                 type: String,
                 required: true,
                 trim: true,
+            },
+            reviewScore: {
+                type: Number,
+                default: 0,
+                min: 0,
+                max: 5,
             },
             createdDate: {
                 type: Date,
