@@ -22,3 +22,15 @@ export const ADD_USER = gql`
     }
   }
 `;
+
+export const ADD_BUSINESS = gql`
+  mutation addBusiness(
+    $name: String!
+    $description: String!
+    $category: String!
+  ) {
+    addBusiness(name: $name, email: $description, category: $category) {
+      _id
+    }
+  }
+`;

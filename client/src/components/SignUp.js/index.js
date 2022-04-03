@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
-import AddBusiness from "./AddBusiness";
+// import AddBusiness from "./AddBusiness";
 import Auth from "../../utils/auth";
 import { ADD_USER } from "../../utils/mutations";
 
@@ -26,6 +26,13 @@ export default function SignUp() {
 
     const token = mutationResponse.data.addUser.token;
     Auth.login(token);
+
+    if (Auth.getProfile().data.email) {
+      const profileId = Auth.getProfile().data._id;
+      window.location.replace(`profiles/${profileId}`);
+    } else {
+      alert("User already exists in our database");
+    }
   };
 
   const handleChange = (event) => {
@@ -75,7 +82,7 @@ export default function SignUp() {
         </div>
       </div>
 
-      <div id="includeBusiness-wrapper">
+      {/* <div id="includeBusiness-wrapper">
         <label htmlFor="addBusiness">Would you like to add a business?</label>
         <input
           name="addBusiness"
@@ -84,7 +91,7 @@ export default function SignUp() {
           onClick={(e) => setBusinessAdded(!businessAdded)}
         />
       </div>
-      {businessAdded ? <AddBusiness></AddBusiness> : null}
+      {businessAdded ? <AddBusiness></AddBusiness> : null} */}
 
       {/* {error ? (
           <div>
