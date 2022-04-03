@@ -16,6 +16,20 @@ const resolvers = {
     userById: async (parent, { userId }) => {
       return User.findOne({ userId }).populate("business");
     },
+    // userByEmail: async (parent, { userEmail }) => {
+    //   try {
+    //     let foundByEmail = await User.findOne({ email: userEmail }).catch(
+    //       (err) => err
+    //     );
+    //     if (!foundByEmail) {
+    //       return console.log("could not find user");
+    //     }
+
+    //     return foundByEmail;
+    //   } catch (err) {
+    //     return err;
+    //   }
+    // },
     //returns all businesses
     businesses: async (parent, { fullName }) => {
       const params = fullName ? { fullName } : {};

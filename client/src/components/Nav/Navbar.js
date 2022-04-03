@@ -9,6 +9,7 @@ import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
+import Auth from "../../utils/auth.js";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -53,6 +54,13 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export const Navbar = () => {
+  const [loggedIn, setLoggedIn] = React.useState(false);
+
+  React.useEffect(() => {
+    if (Auth.getProfile().data.email) {
+      setLoggedIn(true);
+    }
+  }, []);
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -74,14 +82,20 @@ export const Navbar = () => {
           >
             getTraded
           </Typography>
-
-          <Button variant="outlined" color="inherit" href="/login">
-            Login
-          </Button>
-
-          <Button variant="text" color="inherit" href="/signup">
-            SIGNUP
-          </Button>
+          {loggedIn ? (
+            <Button variant="outlined" color="inherit" href="/login">
+              Logout
+            </Button>
+          ) : (
+            <div>
+              <Button variant="outlined" color="inherit" href="/login">
+                Login
+              </Button>
+              <Button variant="text" color="inherit" href="/signup">
+                SIGNUP
+              </Button>
+            </div>
+          )}
 
           <Search>
             <SearchIconWrapper>
