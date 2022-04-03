@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
-import AddBusiness from "./AddBusiness";
+// import AddBusiness from "./AddBusiness";
 import Auth from "../../utils/auth";
 import { ADD_USER } from "../../utils/mutations";
 
@@ -20,13 +20,19 @@ export default function SignUp() {
     event.preventDefault();
     const mutationResponse = await addUser({
       variables: {
-        fullName: formState.fullName,
-        email: formState.email,
-        password: formState.password,
+        ...formState,
       },
     });
+
     const token = mutationResponse.data.addUser.token;
     Auth.login(token);
+
+    if (Auth.getProfile().data.email) {
+      const profileId = Auth.getProfile().data._id;
+      window.location.replace(`profiles/${profileId}`);
+    } else {
+      alert("User already exists in our database");
+    }
   };
 
   const handleChange = (event) => {
@@ -38,7 +44,7 @@ export default function SignUp() {
   };
   useEffect(() => {}, [businessAdded]);
   return (
-    <LoginFormWrapper id="signup-wrapper">
+    <LoginFormWrapper id="signup-wrapper" onClick={handleFormSubmit}>
       <h3>Sign up to getTraded</h3>
       {/* <GoogleSignIn></GoogleSignIn> */}
 
@@ -54,7 +60,14 @@ export default function SignUp() {
           />
         </div>
         <div className="flex-row space-between my-2">
-          <input placeholder="Email" name="email" type="email" id="email" />
+          <input
+            placeholder="Email"
+            name="email"
+            type="email"
+            id="email"
+            value={formState.email}
+            onChange={handleChange}
+          />
         </div>
 
         <div className="  flex-row space-between my-2">
@@ -69,7 +82,7 @@ export default function SignUp() {
         </div>
       </div>
 
-      <div id="includeBusiness-wrapper">
+      {/* <div id="includeBusiness-wrapper">
         <label htmlFor="addBusiness">Would you like to add a business?</label>
         <input
           name="addBusiness"
@@ -78,7 +91,7 @@ export default function SignUp() {
           onClick={(e) => setBusinessAdded(!businessAdded)}
         />
       </div>
-      {businessAdded ? <AddBusiness></AddBusiness> : null}
+      {businessAdded ? <AddBusiness></AddBusiness> : null} */}
 
       {/* {error ? (
           <div>
@@ -86,7 +99,7 @@ export default function SignUp() {
           </div>
         ) : null} */}
       <div className="flex-row flex-end">
-        <button type="submit" onClick={handleFormSubmit}>
+        <button type="submit">
           <ExitToApp /> Sign Up
         </button>
       </div>

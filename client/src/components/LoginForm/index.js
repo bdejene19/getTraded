@@ -26,6 +26,7 @@ export default function LoginForm() {
       const token = data.login.token;
       Auth.login(token);
       if (Auth.getProfile().data.email) {
+        console.log(Auth.getProfile().data);
         const userId = data.login.user._id;
         window.location.replace(`/profiles/${userId}`);
       } else {
