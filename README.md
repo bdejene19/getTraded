@@ -1,6 +1,6 @@
 # GetTraded 
 
-## Hi There! 👋🏼 CHeckout our Deployed app on heroku: https://get-traded.herokuapp.com/
+## Hi There! 👋🏼 Checkout our Deployed app on heroku: https://get-traded.herokuapp.com/
 
 
 ### Languages and Tools Used:
