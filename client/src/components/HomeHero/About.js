@@ -65,4 +65,15 @@ const AboutWrapper = styled.section`
       opacity: 1;
     }
   }
+
+  @media screen and (max-width: 768px) {
+    h2 {
+      font-size: 1.75rem;
+    }
+
+    img {
+      height: 33vh;
+      width: 85%;
+    }
+  } ;
 `;

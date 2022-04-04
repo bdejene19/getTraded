@@ -7,6 +7,7 @@ export const ProfileData = (props) => {
   const [btnDisabled, setBtnDisabled] = useState(false);
   const [categoryName, setCategoryName] = useState("");
   const [link, setLink] = useState("");
+
   useEffect(() => {
     if (props.business.length === 0) {
       setBtnDisabled(true);
@@ -32,8 +33,12 @@ export const ProfileData = (props) => {
           View Business
         </Button>
       </Header>
-      <h3>Business Type: {categoryName}</h3>
-      <p>Email: {props.email}</p>
+      <h3>
+        Business Type: <span>{categoryName}</span>
+      </h3>
+      <h4>
+        Email: <span>{props.email}</span>
+      </h4>
 
       <ContactWrapper></ContactWrapper>
       <AddBusiness></AddBusiness>
@@ -42,6 +47,25 @@ export const ProfileData = (props) => {
 };
 const ProfileWrapper = styled.article`
   padding: 2em;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.5em;
+  h3 {
+    font-weight: 600;
+  }
+  h3 span,
+  h4 span {
+    font-weight: 300;
+  }
+  p {
+    font-size: 1.25rem;
+  }
+
+  #includeBusiness-wrapper {
+    display: flex;
+    column-gap: 2em;
+    align-items: center;
+  }
 `;
 const ContactWrapper = styled.div`
   display: flex;

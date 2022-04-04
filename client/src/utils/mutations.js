@@ -28,8 +28,14 @@ export const ADD_BUSINESS = gql`
     $name: String!
     $description: String!
     $category: String!
+    $id: String!
   ) {
-    addBusiness(name: $name, email: $description, category: $category) {
+    addBusiness(
+      id: $id
+      name: $name
+      description: $description
+      category: $category
+    ) {
       name
     }
   }

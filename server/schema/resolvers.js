@@ -92,24 +92,22 @@ const resolvers = {
 
       return { token, user };
     },
-    addBusiness: async (parent, { name, description, category }, context) => {
-      if (context.user) {
-        //here below depending on front end if we pass either category actual name or the category id dealt with both ways one will work
-        const business = await Business.create({
-          name,
-          description,
-          category,
-          owner: context.user.fullName,
-        });
+    addBusiness: async (
+      parent,
+      { name, description, category, id },
+      context
+    ) => {
+      //here below depending on front end if we pass either category actual name or the category id dealt with both ways one will work
+      const business = await Business.create({
+        name,
+        description,
+        category,
+      });
 
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $addToSet: { business: business._id } }
-        );
-
-        return business;
-      }
-      throw new AuthenticationError("You need to be logged in!");
+      return await User.findOneAndUpdate(
+        { _id: id },
+        { $addToSet: { business: business._id } }
+      );
     },
     addReview: async (
       parent,
