@@ -15,7 +15,7 @@ export const Container = styled.div`
   flex-direction: column;
   width: 100%;
 
-  & #previousWork-section {
+  &#previousWork-section {
     .dots-container {
       display: flex;
       column-gap: 1em;
@@ -32,6 +32,23 @@ export const Container = styled.div`
       .active: {
         list-style: inherit;
       }
+    }
+  }
+
+  &#business-page {
+    border: solid black 3px;
+
+    #title {
+      padding: 0;
+    }
+
+    h3.subheader {
+      padding-left: 1.25em;
+      text-decoration: underline;
+    }
+    .previousWork-wrap {
+      margin-top: 3em;
+      padding: 2em 0;
     }
   }
 `;

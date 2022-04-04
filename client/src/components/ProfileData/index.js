@@ -1,15 +1,20 @@
 import { Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { Container } from "../../pages/Home";
 import AddBusiness from "./AddBusiness";
-import BusinessForm from "./BusinessForm";
 
 export const ProfileData = (props) => {
   const [btnDisabled, setBtnDisabled] = useState(false);
+  const [categoryName, setCategoryName] = useState("");
+  const [link, setLink] = useState("");
   useEffect(() => {
-    if (props.businessLength === 0) {
+    if (props.business.length === 0) {
       setBtnDisabled(true);
+    } else {
+      const business = props.business[0];
+      console.log(business);
+      setCategoryName(business.category);
+      setLink(business._id);
     }
   }, []);
 
@@ -22,12 +27,12 @@ export const ProfileData = (props) => {
           style={{ borderRadius: "50px" }}
           id="business-btn"
           disabled={btnDisabled}
-          href={`/businesses/${props.businessLink}`}
+          href={`/businesses/${link}`}
         >
           View Business
         </Button>
       </Header>
-      <h3>Business Type: {props.businessCategory}</h3>
+      <h3>Business Type: {categoryName}</h3>
       <p>Email: {props.email}</p>
 
       <ContactWrapper></ContactWrapper>
