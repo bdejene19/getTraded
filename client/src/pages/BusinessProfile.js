@@ -21,7 +21,8 @@ export const BusinessProfile = () => {
 
     const businessData = data?.businessById || null;
     // console.log(JSON.stringify(error, null, 2));
-
+    const reviewData = businessData?.reviews || [];
+    const experienceData = businessData?.experience || [];
     return (
         <Container>
             {loading ? (
@@ -60,30 +61,15 @@ export const BusinessProfile = () => {
           <LargeProfileCard fullName="Bemnet Dejene "></LargeProfileCard>
         </div>
       </ProfileInfoWrapper> */}
-            <PreviousWork></PreviousWork>
-            {/* <div className='card'>
-                {businessData.reviews.length == 0 ? (
-                    <h3>No experience posted yet.</h3>
-                ) : (
-                    <ProfileInfoWrapper>
-                        {businessData.experience.map((experience) => (
-                            <ExperienceCard
-                                workType={experience.workType}
-                                workDescription={experience.workDescription}
-                            ></ExperienceCard>
-                        ))}
-                    </ProfileInfoWrapper>
-                )}
-            </div>
             <div className='row '>
                 <h3 className='container '>Check out Reviews: </h3>
             </div>
             <div className='card'>
-                {businessData.reviews.length == 0 ? (
+                {reviewData.length === 0 ? (
                     <h3>No reviews.</h3>
                 ) : (
                     <ProfileInfoWrapper>
-                        {businessData.reviews.map((review) => (
+                        {reviewData.map((review) => (
                             <ReviewCard
                                 reviewName={review.reviewAuthor}
                                 reviewText={review.reviewText}
@@ -92,7 +78,22 @@ export const BusinessProfile = () => {
                         ))}
                     </ProfileInfoWrapper>
                 )}
-            </div> */}
+            </div>
+            <PreviousWork></PreviousWork>
+            <div className='card'>
+                {experienceData.length === 0 ? (
+                    <h3>No experience posted yet.</h3>
+                ) : (
+                    <ProfileInfoWrapper>
+                        {experienceData.map((experience) => (
+                            <ExperienceCard
+                                workType={experience.workType}
+                                workDescription={experience.workDescription}
+                            ></ExperienceCard>
+                        ))}
+                    </ProfileInfoWrapper>
+                )}
+            </div>
         </Container>
     );
 };

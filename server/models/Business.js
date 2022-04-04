@@ -26,7 +26,6 @@ const businessSchema = new Schema({
     },
     owner: {
         type: String,
-        required: true,
         trim: true,
     },
     experience: [
