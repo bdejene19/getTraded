@@ -6,12 +6,10 @@ export default function WorkerCard(props) {
   return (
     <CardContainer>
       <div>
-        <p>{props.businessName}</p>
-        <p>{props.workCategory}</p>
+        <p className="header">{props.businessName}</p>
+        <p className="subheader">{props.workCategory}</p>
       </div>
-      <div className="recentWork-btn">
-        <button>Recent Work</button>
-      </div>
+      <div className="recentWork-btn"></div>
 
       <div className="viewBusiness-btn">
         <Link to={`/businesses/${props.businessId}`}>
@@ -72,11 +70,24 @@ const CardContainer = styled.article`
     color: white;
   }
 
+  .header {
+    font-size: 1.25rem;
+  }
+
+  .subheader {
+    font-size: 0.7rem;
+  }
+
   @media screen and (max-width: 1000px) {
     max-width: 35vw;
+    height: 30vh;
   }
 
   @media screen and (max-width: 768px) {
     max-width: 90vw;
+  }
+
+  @media screen and (max-width: 435px) {
+    height: 50vh;
   }
 `;

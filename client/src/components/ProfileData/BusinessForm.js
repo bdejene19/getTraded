@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { ADD_BUSINESS } from "../../utils/mutations";
 // import { QUERY_USER_BY_ID, QUERY_ME } from "../../utils/queries";
 import Auth from "../../utils/auth";
+import { Button } from "@mui/material";
 export default function BusinessForm() {
   const [businessFormState, setBusinessFormState] = useState({
     name: "",
@@ -37,9 +38,9 @@ export default function BusinessForm() {
 
   return (
     <BusinessFormWrapper>
-      <p>Fill out business info.</p>
-
       <div>
+        <p>Fill out business info.</p>
+
         <label htmlFor="businessName">Business Name:</label>
 
         <input
@@ -77,9 +78,9 @@ export default function BusinessForm() {
         ></textarea>
       </div>
       <div className="flex-row flex-end">
-        <button type="submit" onClick={handleBusinessSubmit}>
+        <Button color="info" variant="contained" onClick={handleBusinessSubmit}>
           Create
-        </button>
+        </Button>
       </div>
     </BusinessFormWrapper>
   );
@@ -92,10 +93,15 @@ const BusinessFormWrapper = styled.div`
   padding: 2em 0;
   row-gap: 1em;
   margin: 5em 0;
-  border: solid skyblue 1px;
-  box-shadow: 3px 3px 3px slategrey;
+  border: solid lightgrey 3px;
+  box-shadow: 3px 3px 3px black;
+  background: url("https://www.pinclipart.com/picdir/big/534-5347566_building-construction-equipment-png-clipart.png");
+  background-size: cover;
+  background-position: center;
+  height: 70vh;
   p {
-    padding: 0 1.5em;
+    /* padding: 0 1.5em; */
+    padding: 1em 0;
   }
   div {
     width: 60%;

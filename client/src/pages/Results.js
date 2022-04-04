@@ -49,7 +49,7 @@ const ResultsCardsWrapper = styled.section`
   display: flex;
   flex-wrap: wrap;
   row-gap: 2em;
-  column-gap: 5em;
+  column-gap: 2em;
   padding: 2.5em;
   justify-content: center;
 `;
