@@ -103,6 +103,12 @@ const ProfileInfoWrapper = styled.article`
     flex-wrap: wrap;
     width: 100%;
 
+    boarder: 1px solid black;
+    padding: 1rem;
+    .container {
+        flex: 1 1 100%;
+    }
+
     .smallCards-Container,
     .largeCard-Container {
         padding: 3em;
