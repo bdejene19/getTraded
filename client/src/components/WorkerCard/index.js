@@ -29,7 +29,8 @@ const CardContainer = styled.article`
   flex-direction: column;
   row-gap: 2em;
   border-radius: 5px;
-  max-width: 15vw;
+  max-width: 20vw;
+  box-shadow: 3px 3px 3px #1ec1cb;
   height: 35vh;
   background-color: #cddaf4;
 
@@ -69,5 +70,13 @@ const CardContainer = styled.article`
 
   #viewBusiness {
     color: white;
+  }
+
+  @media screen and (max-width: 1000px) {
+    max-width: 35vw;
+  }
+
+  @media screen and (max-width: 768px) {
+    max-width: 90vw;
   }
 `;
