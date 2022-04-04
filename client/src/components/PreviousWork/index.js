@@ -55,7 +55,9 @@ export default function PreviousWork() {
           index === 0 ? (
             <li
               className="active"
-              onClick={() => setSliderXValue(index * -100)}
+              onClick={() => {
+                setSliderXValue(index * -100);
+              }}
             ></li>
           ) : (
             <li
