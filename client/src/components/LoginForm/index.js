@@ -52,7 +52,7 @@ export default function LoginForm() {
   return (
     <LoginFormWrapper onSubmit={handleFormSubmit}>
       <h3>Sign In to getTraded</h3>
-      {/* <GoogleSignIn></GoogleSignIn> */}
+      <GoogleSignIn></GoogleSignIn>
       <div id="login-divider">
         <hr></hr>
         <p>or sign in with email</p>
