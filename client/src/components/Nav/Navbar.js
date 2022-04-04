@@ -65,19 +65,11 @@ export const Navbar = () => {
             color="inherit"
             aria-label="open drawer"
             sx={{ mr: 2 }}
+            onClick={() =>
+              window.location.replace(`/profiles/${Auth.getProfile().data._id}`)
+            }
           >
-            {Auth.loggedIn() ? (
-              <Button
-                onClick={() =>
-                  window.location.replace(
-                    `/profiles/${Auth.getProfile().data._id}`
-                  )
-                }
-                color="inherit"
-              >
-                <CottageIcon />
-              </Button>
-            ) : null}
+            {Auth.loggedIn() ? <CottageIcon /> : null}
           </IconButton>
           <Typography
             variant="h6"
