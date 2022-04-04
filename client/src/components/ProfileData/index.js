@@ -6,11 +6,20 @@ import AddBusiness from "./AddBusiness";
 import BusinessForm from "./BusinessForm";
 
 export const ProfileData = (props) => {
+  const link = props.businessLink !== undefined ? props.businessLink : null;
   return (
     <ProfileWrapper>
       <Header>
         <h1>{props.name}</h1>
-        <Button variant="contained" style={{ borderRadius: "50px" }}>
+        <Button
+          variant="contained"
+          style={{ borderRadius: "50px" }}
+          onClick={() => {
+            if (link !== undefined) {
+              window.location.replace(`/profiles/${link}`);
+            }
+          }}
+        >
           View Business
         </Button>
       </Header>
