@@ -2,13 +2,11 @@ import React, { useState } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import { Link } from "react-router-dom";
 import { LOGIN } from "../../utils/mutations.js";
-import { QUERY_ME } from "../../utils/queries";
 
 import Auth from "../../utils/auth.js";
 import styled from "styled-components";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import GoogleSignIn from "./GoogleSignIn";
-import decode from "jwt-decode";
 
 export default function LoginForm() {
   const [formState, setFormState] = useState({ email: "", password: "" });
@@ -54,7 +52,7 @@ export default function LoginForm() {
   return (
     <LoginFormWrapper onSubmit={handleFormSubmit}>
       <h3>Sign In to getTraded</h3>
-      <GoogleSignIn></GoogleSignIn>
+      {/* <GoogleSignIn></GoogleSignIn> */}
       <div id="login-divider">
         <hr></hr>
         <p>or sign in with email</p>
