@@ -105,7 +105,9 @@ const ProfileInfoWrapper = styled.article`
 
     boarder: 1px solid black;
     padding: 1rem;
- 
+    .container {
+        flex: 1 1 100%;
+    }
 
     .smallCards-Container,
     .largeCard-Container {
