@@ -103,6 +103,7 @@ const ProfileInfoWrapper = styled.article`
     row-gap: 2em;
   }
 
+
   .largeCard-Container {
     flex: 1 1 65%;
     order: 2;

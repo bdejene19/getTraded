@@ -1,6 +1,6 @@
 # GetTraded 
 
-## Hi There! 👋🏼 CHeckout our Deployed app on heroku: http://getTraded.herokuapp.com/
+## Hi There! 👋🏼 Checkout our Deployed app on heroku: https://get-traded.herokuapp.com/
 
 
 ### Languages and Tools Used:
@@ -50,6 +50,13 @@ This app was created to help users locate tradespeople and tradespeople share th
 <br>
 
 ### contributing
+
+Feel free to submit pull request to help:
+
+* Fix errors 
+* Improve sections 
+* Add new sections 
+* New features and functionalty
 
 This application was created by <a href="https://github.com/bdejene19" target="_blank">Bemnet Dejene</a>, <a href="https://github.com/ernestosanchezCS" target="_blank">Ernesto Sanchez</a>, and <a href="https://github.com/mathewosad" target="_blank">Mathew Osadolor</a>.
 
