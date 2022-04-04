@@ -46,6 +46,18 @@ This app was created to help users locate tradespeople and tradespeople share th
 * Deployed using Heroku
 
 ## Screenshots
+### Home Landing Page
+<img width="650" alt="Home landing page" src="https://user-images.githubusercontent.com/67334768/161633022-6d8c4996-cea7-4ee6-b056-fc24987ce3fc.png">
+
+### Login Page
+<img width="650" alt="Login page" src="https://user-images.githubusercontent.com/67334768/161633059-9c6761fd-6417-404d-8ba6-6806536f7829.png">
+
+### Dynamic Profile Page
+<img width="650" alt="Profile Page" src="https://user-images.githubusercontent.com/67334768/161633130-1cf9ad63-d678-4363-81d1-9c5e119ddcaf.png">
+
+
+### Dynamic Business Page
+<img width="650" alt="Business Page" src="https://user-images.githubusercontent.com/67334768/161633324-ae9b2712-ada5-4280-9490-0019f5df0cfa.png">
 
 <br>
 
