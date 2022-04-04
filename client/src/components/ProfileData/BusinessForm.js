@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useMutation, useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
 import { ADD_BUSINESS } from "../../utils/mutations";
-import { QUERY_USER_BY_ID, QUERY_ME } from "../../utils/queries";
+// import { QUERY_USER_BY_ID, QUERY_ME } from "../../utils/queries";
 import Auth from "../../utils/auth";
 export default function BusinessForm() {
   const [businessFormState, setBusinessFormState] = useState({
@@ -13,42 +13,17 @@ export default function BusinessForm() {
   });
   const [successMsg, setSuccessMsg] = useState(null);
   const { userId } = useParams();
-  // const [addBusiness, { error, data }] = useMutation(ADD_BUSINESS);
-  const [addBusiness, { loading, err, data }] = useMutation(ADD_BUSINESS, {
-    update(cache, { data: { addBusiness } }) {
-      try {
-        console.log("hi update");
-
-        const { business } = cache.readQuery({ query: QUERY_USER_BY_ID });
-        console.log("my bus: ", business);
-
-        cache.writeQuery({
-          query: QUERY_USER_BY_ID,
-          data: { business: [addBusiness, ...business] },
-        });
-      } catch (e) {
-        console.error(e);
-      }
-      // // update me object's cache
-      // const { me } = cache.readQuery({ query: QUERY_ME });
-      // cache.writeQuery({
-      //   query: QUERY_ME,
-      //   data: { me: { ...me, business: [...me.business, addBusiness] } },
-      // });
-    },
-  });
+  const [addBusiness, { error, data }] = useMutation(ADD_BUSINESS);
 
   const handleBusinessSubmit = async (e) => {
     e.preventDefault();
-    console.log("b:", businessFormState);
 
-    if (Auth.loggedIn()) {
-      const addBusinessMutation = await addBusiness({
-        variables: {
-          ...businessFormState,
-        },
-      }).catch((err) => console.log(err));
-    }
+    const addBusinessMutation = await addBusiness({
+      variables: {
+        ...businessFormState,
+        id: userId,
+      },
+    }).catch((err) => console.log(err));
   };
 
   const handleChange = (event) => {
@@ -114,10 +89,11 @@ const BusinessFormWrapper = styled.div`
   display: flex;
   flex-direction: column;
   text-align: left;
-  border: solid blue 3px;
   padding: 2em 0;
   row-gap: 1em;
-  /* justify-content: center; */
+  margin: 5em 0;
+  border: solid skyblue 1px;
+  box-shadow: 3px 3px 3px slategrey;
   p {
     padding: 0 1.5em;
   }

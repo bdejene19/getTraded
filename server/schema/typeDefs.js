@@ -58,6 +58,7 @@ const typeDefs = gql`
     addUser(fullName: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     addBusiness(
+      id: String!
       name: String!
       description: String!
       category: String!
