@@ -1,12 +1,18 @@
 import { Button } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Container } from "../../pages/Home";
 import AddBusiness from "./AddBusiness";
 import BusinessForm from "./BusinessForm";
 
 export const ProfileData = (props) => {
-  const link = props.businessLink !== undefined ? props.businessLink : null;
+  const [btnDisabled, setBtnDisabled] = useState(false);
+  useEffect(() => {
+    if (props.businessLength === 0) {
+      setBtnDisabled(true);
+    }
+  }, []);
+
   return (
     <ProfileWrapper>
       <Header>
@@ -14,11 +20,9 @@ export const ProfileData = (props) => {
         <Button
           variant="contained"
           style={{ borderRadius: "50px" }}
-          onClick={() => {
-            if (link !== undefined) {
-              window.location.replace(`/profiles/${link}`);
-            }
-          }}
+          id="business-btn"
+          disabled={btnDisabled}
+          href={`/businesses/${props.businessLink}`}
         >
           View Business
         </Button>

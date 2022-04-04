@@ -16,7 +16,6 @@ export default function UserProfile() {
   });
   const userInfo = data?.userById || [];
   console.log(userInfo);
-
   return (
     <Container>
       {Auth.loggedIn() && Auth.getProfile().data.email ? (
@@ -26,8 +25,10 @@ export default function UserProfile() {
           <ProfileData
             name={userInfo.fullName}
             email={userInfo.email}
+            businessLength={userInfo.business.length}
             // businessCategory={userInfo.business[0]}
             // businessLink={userInfo.business[0]._id}
+            businessLink={userInfo.business[0]._id}
           />
         )
       ) : (
