@@ -30,7 +30,7 @@ export const ADD_BUSINESS = gql`
     $category: String!
   ) {
     addBusiness(name: $name, email: $description, category: $category) {
-      _id
+      name
     }
   }
 `;
