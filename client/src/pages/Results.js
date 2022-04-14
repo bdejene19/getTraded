@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, Suspense } from "react";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { Container } from "./Home";
 import WorkerCard from "../components/WorkerCard";
 import { useQuery } from "@apollo/client";
 import { QUERY_BUSINESS_BY_CATEGORY } from "../utils/queries";
+import { Spinner } from "../components/LoadingSpinner";
 export default function Results() {
   let { tradesType } = useParams();
   console.log(tradesType);
@@ -21,27 +22,29 @@ export default function Results() {
   const [results, setResults] = useState(data);
 
   return (
-    <Container>
-      <h3 style={{ padding: "1em" }}>
-        Searching for: <span style={{ fontWeight: 300 }}>{tradesType}</span>
-      </h3>
+    <Suspense fallback={<Spinner />}>
+      <Container>
+        <h3 style={{ padding: "1em" }}>
+          Searching for: <span style={{ fontWeight: 300 }}>{tradesType}</span>
+        </h3>
 
-      <ResultsCardsWrapper>
-        {loading ? (
-          <h1>...loading</h1>
-        ) : gqlResults.length === 0 ? (
-          <h3>No results</h3>
-        ) : (
-          gqlResults?.map((business) => (
-            <WorkerCard
-              businessName={business.name}
-              workCategory={business.category}
-              businessId={business._id}
-            ></WorkerCard>
-          ))
-        )}
-      </ResultsCardsWrapper>
-    </Container>
+        <ResultsCardsWrapper>
+          {loading ? (
+            <Spinner />
+          ) : gqlResults.length === 0 ? (
+            <h3>No results</h3>
+          ) : (
+            gqlResults?.map((business) => (
+              <WorkerCard
+                businessName={business.name}
+                workCategory={business.category}
+                businessId={business._id}
+              ></WorkerCard>
+            ))
+          )}
+        </ResultsCardsWrapper>
+      </Container>
+    </Suspense>
   );
 }
 
@@ -52,4 +55,7 @@ const ResultsCardsWrapper = styled.section`
   column-gap: 2em;
   padding: 2.5em;
   justify-content: center;
+  .workercard-wrapper {
+    flex: 1 1 15em;
+  }
 `;

@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import { Container } from "./Home";
 import { useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import styled from "styled-components";
 import LargeProfileCard from "../components/LargeProfileCard";
 import ReviewCard from "../components/ReviewCard";
@@ -9,6 +9,7 @@ import { Container } from "./Home";
 import { useQuery } from "@apollo/client";
 import { QUERY_BUSINESS_BY_ID } from "../utils/queries";
 import { useParams } from "react-router-dom";
+import { Spinner } from "../components/LoadingSpinner";
 
 export const BusinessProfile = () => {
   const { businessId } = useParams();
@@ -24,64 +25,66 @@ export const BusinessProfile = () => {
   const reviewData = businessData?.reviews || [];
   const experienceData = businessData?.experience || [];
   return (
-    <Container id="business-page">
-      {loading ? (
-        <h1>...loading</h1>
-      ) : (
-        <ProfileInfoWrapper>
-          <div className="smallCards-Container">
-            <SmallProfileCard
-              cardHeader="Average Work Rating"
-              cardContent={businessData.avgScore}
-            />
-            <SmallProfileCard cardHeader="Completed Jobs" cardContent="7" />
-          </div>
-          <div className="largeCard-Container">
-            <LargeProfileCard
-              businessName={businessData.name}
-              fullName={businessData.owner}
-              about={businessData.description}
-              previousWork={businessData.experience}
-            ></LargeProfileCard>
-          </div>
-        </ProfileInfoWrapper>
-      )}
-      <div className="row ">
-        <h3 className="subheader ">Check out Reviews</h3>
-      </div>
-      <div className="card">
-        {reviewData.length === 0 ? (
-          <h3>No reviews.</h3>
+    <Suspense fallback={<Spinner />}>
+      <Container id="business-page">
+        {loading ? (
+          <Spinner />
         ) : (
           <ProfileInfoWrapper>
-            {reviewData.map((review) => (
-              <ReviewCard
-                reviewName={review.reviewAuthor}
-                reviewText={review.reviewText}
-                createdDate={review.createdDate}
-              ></ReviewCard>
-            ))}
+            <div className="smallCards-Container">
+              <SmallProfileCard
+                cardHeader="Average Work Rating"
+                cardContent={businessData.avgScore}
+              />
+              <SmallProfileCard cardHeader="Completed Jobs" cardContent="7" />
+            </div>
+            <div className="largeCard-Container">
+              <LargeProfileCard
+                businessName={businessData.name}
+                fullName={businessData.owner}
+                about={businessData.description}
+                previousWork={businessData.experience}
+              ></LargeProfileCard>
+            </div>
           </ProfileInfoWrapper>
         )}
-      </div>
-      <div className="previousWork-wrap">
-        <PreviousWork></PreviousWork>
+        <div className="row ">
+          <h3 className="subheader ">Check out Reviews</h3>
+        </div>
         <div className="card">
-          {experienceData.length === 0 ? (
-            <h3>No experience posted yet.</h3>
+          {reviewData.length === 0 ? (
+            <h3>No reviews.</h3>
           ) : (
             <ProfileInfoWrapper>
-              {experienceData.map((experience) => (
-                <ExperienceCard
-                  workType={experience.workType}
-                  workDescription={experience.workDescription}
-                ></ExperienceCard>
+              {reviewData.map((review) => (
+                <ReviewCard
+                  reviewName={review.reviewAuthor}
+                  reviewText={review.reviewText}
+                  createdDate={review.createdDate}
+                ></ReviewCard>
               ))}
             </ProfileInfoWrapper>
           )}
         </div>
-      </div>
-    </Container>
+        <div className="previousWork-wrap">
+          <PreviousWork></PreviousWork>
+          <div className="card">
+            {experienceData.length === 0 ? (
+              <h3>No experience posted yet.</h3>
+            ) : (
+              <ProfileInfoWrapper>
+                {experienceData.map((experience) => (
+                  <ExperienceCard
+                    workType={experience.workType}
+                    workDescription={experience.workDescription}
+                  ></ExperienceCard>
+                ))}
+              </ProfileInfoWrapper>
+            )}
+          </div>
+        </div>
+      </Container>
+    </Suspense>
   );
 };
 
@@ -102,7 +105,6 @@ const ProfileInfoWrapper = styled.article`
     justify-content: center;
     row-gap: 2em;
   }
-
 
   .largeCard-Container {
     flex: 1 1 65%;

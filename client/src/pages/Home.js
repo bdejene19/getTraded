@@ -36,8 +36,6 @@ export const Container = styled.div`
   }
 
   &#business-page {
-    border: solid black 3px;
-
     #title {
       padding: 0;
     }
